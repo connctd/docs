@@ -10,5 +10,10 @@
   "workspaces": [
     "gatsby-theme-connctd-docs",
     "docs"
-  ]
+  ],
+  "devDependencies": {
+    "@connctd/eslint-config-typescript": "^1.0.3",
+    "eslint": "^6.4.0",
+    "typescript": "^3.5.3"
+  }
 }
