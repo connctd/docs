@@ -3,6 +3,7 @@ const path = require("path")
 module.exports = {
     plugins: [
       "gatsby-plugin-typescript",
+      "gatsby-plugin-styled-components",
       // Add support for *.mdx files in gatsby
       "gatsby-plugin-mdx",
       // Add a collection called "docs" that looks

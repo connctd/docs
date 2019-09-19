@@ -1,1 +1,3 @@
-{"extends": ["@connctd/typescript"]}
+{
+    "extends": ["@connctd/typescript"]
+}
