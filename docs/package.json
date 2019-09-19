@@ -7,7 +7,8 @@
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "start": "gatsby develop"
+    "start": "gatsby develop",
+    "watch": "rm -rf ./.cache && nodemon --watch ../gatsby-theme-connctd-docs -e js,ts,tsx,json --exec yarn start"
   },
   "dependencies": {
     "gatsby": "^2.15.18",
@@ -15,5 +16,9 @@
     "gatsby-theme-connctd-docs": "^1.0.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@connctd/eslint-config-typescript": "^1.0.3",
+    "nodemon": "^1.19.2"
   }
 }

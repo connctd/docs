@@ -1,6 +1,6 @@
 module.exports = {
     siteMetadata: {
-      title: `My Ambitious Project`
+        title: "connctd Docs | IoT Service Creation Simplified",
     },
     plugins: [
         "gatsby-plugin-typescript",
