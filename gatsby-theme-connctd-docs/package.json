@@ -1,0 +1,10 @@
+{
+  "name": "gatsby-theme-connctd-docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pandelis Zembashis <pandelis.zembashis@connctd.com> (@pandelisz)",
+  "license": "MIT",
+  "peerDependencies": {
+    "gatsby": "^2.6.0"
+  }
+}

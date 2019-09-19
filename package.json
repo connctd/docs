@@ -1,0 +1,14 @@
+{
+  "name": "@connctd/docs",
+  "private": true,
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "yarn workspace docs build"
+  },
+  "workspaces": [
+    "gatsby-theme-connctd-docs",
+    "docs"
+  ]
+}
