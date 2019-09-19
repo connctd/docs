@@ -2,21 +2,36 @@ import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled, { ThemeProvider } from "styled-components"
-import { Navbar, Logo, Navgroup, Menugroup, Paper, Anchor, Menuarrow, defaultTheme, GlobalStyle } from "@connctd/quartz"
+import {
+    Navbar, Logo, Navgroup, Menugroup, Paper, Anchor, Menuarrow, defaultTheme, GlobalStyle,
+} from "@connctd/quartz"
+import rehypeReact from "rehype-react"
 
 const docsTheme = defaultTheme
 
 export const pageQuery = graphql`
   query BlogPostQuery($id: String) {
-    mdx(id: { eq: $id }) {
-      id
-      body
-      frontmatter {
-        title
+    file(id: {eq: $id}) {
+      childMarkdownRemark {
+        frontmatter {
+          title
+        }
+        htmlAst
+      }
+      childMdx {
+        frontmatter {
+          title
+        }
+        body
       }
     }
   }
 `
+
+/* eslint-disable-next-line */
+const renderAst = new rehypeReact({
+    createElement: React.createElement,
+}).Compiler
 
 const Container = styled.div`
     background-color: #FAFAFA;
@@ -37,7 +52,8 @@ const Content = styled.div`
     }
 `
 
-export default function PageTemplate({ data: { mdx } }) {
+export default function PageTemplate({ data: { file } }) {
+    const { frontmatter } = file.childMarkdownRemark || file.childMdx
     return (
         <>
         <GlobalStyle />
@@ -58,7 +74,7 @@ export default function PageTemplate({ data: { mdx } }) {
                         <Navgroup>
                             <div style={{ width: 170, textAlign: "right" }}>
                                 DOCS
-                    <Menuarrow down />
+                                <Menuarrow down />
                             </div>
                             <Menugroup>
                                 <Anchor href="https://docs.connctd.io">API Docs</Anchor>
@@ -69,8 +85,14 @@ export default function PageTemplate({ data: { mdx } }) {
                 </Navbar>
                 <Content>
                     <Paper>
-                        <h1>{mdx.frontmatter.title}</h1>
-                        <MDXRenderer scope={undefined} components={undefined}>{mdx.body}</MDXRenderer>
+                        <h1>{frontmatter.title}</h1>
+                        {file.childMdx ? (
+                            <MDXRenderer scope={undefined} components={undefined}>
+                                {file.childMdx.body}
+                            </MDXRenderer>
+                        ) : (
+                            renderAst(file.childMarkdownRemark.htmlAst)
+                        )}
                     </Paper>
                 </Content>
             </Container>
