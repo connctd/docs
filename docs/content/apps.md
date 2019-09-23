@@ -1,4 +1,6 @@
-# Apps
+---
+title: Apps
+---
 
 Whenever you would like to build your own application which makes use of things, units or connectors you first need
 to register that app at our platform. By registering an app you will get a client_id and client_secret which can be
@@ -11,7 +13,7 @@ used (depending on the used oauth2 flow) to retrieve an access token. This token
 > *Headers:*<br>
 > &nbsp;Content-Type:application/json<br>
 > &nbsp;Authorization:APP TOKEN<br>
-> *Body:* see below<br> 
+> *Body:* see below<br>
 
 ```json
 {

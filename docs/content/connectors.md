@@ -1,11 +1,13 @@
-# Connectors
+---
+title: Connectors
+---
 
 There are two ways on how things can be added to an external subjects thing list: You can either [register](#register-an-app) and write your own app and use the [create thing](#create-thing) endpoint and/or you can make use of so called connectors.
 Basically a connector can be understood as a piece of code which connects a remote technology and takes care of transforming foreign domain entities into things. Since remote technologies often require different configurations and connectors probably need to run for a couple of users (external subjects) we have split up the concept of a connector into two separate entities:
 
 * **Connector Instance** Can be seen as a preconfiguration for each connector client. As a developer, you can create for each technology exactly one connector instance. This connector instance can have a configuration depending on the requirements of the specific technology. For example if you would like to make use of our OpenWeatherMap connector you need to pass a so called AppKey when creating the connector instance. Otherwise the instance creation will fail. This AppKey can be retrieved when registering at openweathermap.com. As soon as you have created the connector instance you can then create as many connector clients as you wish. The created connector clients will then make use of the previously created connector instance.
 
-* **Connector Client** A connector client is the actual running piece of code which for example polls a remote api and abstracts the results into things. You can not create connector clients for a "technology X" if there does not exist the corresponding connector instance for "technology X". Just as a side note: In contrast to a connector instance which runs only for a specific developer account the creation of a connector client will only succeed if you pass the header field "X-External-Subject-Id". This parameter is internally required by the connector client in order to assign the generated things to the appropriate external subject thing list. 
+* **Connector Client** A connector client is the actual running piece of code which for example polls a remote api and abstracts the results into things. You can not create connector clients for a "technology X" if there does not exist the corresponding connector instance for "technology X". Just as a side note: In contrast to a connector instance which runs only for a specific developer account the creation of a connector client will only succeed if you pass the header field "X-External-Subject-Id". This parameter is internally required by the connector client in order to assign the generated things to the appropriate external subject thing list.
 
 ## Retrieve connector descriptions
 
@@ -76,7 +78,7 @@ Required scope: none
 }
 ```
 
-Creates a new connector instance. Please note: the value of the configuration field depends on the connector type (technology). You can only create one instance per connector_type_id. Otherwise 409 (conflict) is returned.  
+Creates a new connector instance. Please note: the value of the configuration field depends on the connector type (technology). You can only create one instance per connector_type_id. Otherwise 409 (conflict) is returned.
 
 Required scope: `connctd.connector`
 
@@ -103,7 +105,7 @@ Required scope: `connctd.connector`
 ]
 ```
 
-Retrieves a list of links to all connector instances.  
+Retrieves a list of links to all connector instances.
 
 Required scope: `connctd.connector`
 
@@ -137,7 +139,7 @@ Required scope: `connctd.connector`
 }
 ```
 
-Fetches a specific instance. The json object holds a reference to the connector description as well as a list of all clients that are using this instance 
+Fetches a specific instance. The json object holds a reference to the connector description as well as a list of all clients that are using this instance
 
 Required scope: `connctd.connector`
 
@@ -189,7 +191,7 @@ Required scope: `connctd.connector`
 }
 ```
 
-Creates a new connector client. Again the configuration of the client depends on the requirements of the connector. The response status code can be either 201 or 303 (redirect) and depends on the connector type. In both cases the connector client was created. If a 303 is returned the browser of the client needs to be redirected to the location which is mentioned within the location-header-field of the response. A 409 is returned if a client for given X-External-Subject-Id & connector_type_id was already created. A 400 is returned if there exists no appropriate connector instance.   
+Creates a new connector client. Again the configuration of the client depends on the requirements of the connector. The response status code can be either 201 or 303 (redirect) and depends on the connector type. In both cases the connector client was created. If a 303 is returned the browser of the client needs to be redirected to the location which is mentioned within the location-header-field of the response. A 409 is returned if a client for given X-External-Subject-Id & connector_type_id was already created. A 400 is returned if there exists no appropriate connector instance.
 
 Required scope: `connctd.connector`
 
@@ -217,7 +219,7 @@ Required scope: `connctd.connector`
 ]
 ```
 
-Retrieves a list of links to all connector clients that belong to given X-External-Subject-Id.  
+Retrieves a list of links to all connector clients that belong to given X-External-Subject-Id.
 
 Required scope: `connctd.connector`
 
@@ -253,13 +255,13 @@ Required scope: `connctd.connector`
 			"thing_id": "56ed33d9-bd1a-4650-9264-d996132098de"
 		}
 	],
-	"status": "STARTED" 
+	"status": "STARTED"
 }
 ```
 
 Fetches a specific client for a given X-External-Subject-Id. The json object holds references to the connector description and corresponding connector instance. Within the mappings field a list of key values pairs is stored. It shows which things were create by the given client and to which id they are mapped internally.
 
-Status might be Starting, Started or Error  
+Status might be Starting, Started or Error
 
 Required scope: `connctd.connector`
 

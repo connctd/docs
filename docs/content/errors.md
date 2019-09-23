@@ -1,4 +1,6 @@
-# Errors
+---
+title: Errors
+---
 
 The connctd.io API uses the following error codes:
 

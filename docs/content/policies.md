@@ -1,8 +1,10 @@
-# Policies
+---
+title: Policies
+---
 
 Whenever a unit or thing is created it belongs to a specific subject and thus can only be seen by that subject. Policies allow a subject to share resources with other subjects. Depending on the policy settings a policy can give e.g. access to a complete thing or only parts and specific actions of a thing like a single sensor reading.
 
-## Model 
+## Model
 
 ```json
 {
@@ -45,7 +47,7 @@ Creates a policy that is applied to given subjects as soon as request fits one o
 }
 ```
 
-A **Resources** describes an entity within the connctd platform. Right now we support referencing things (and of course sub elements) and units. A resource can only be referenced from within a policy if the subject creating the policy is also the owner of the resource. Resources have to be declared in the following way: 
+A **Resources** describes an entity within the connctd platform. Right now we support referencing things (and of course sub elements) and units. A resource can only be referenced from within a policy if the subject creating the policy is also the owner of the resource. Resources have to be declared in the following way:
 
 `resources:<things|units>:<non-wildcard-id>[:<optional subelements including wildcards]`
 

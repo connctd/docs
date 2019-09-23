@@ -1,10 +1,11 @@
-
-# Authentication
+---
+title: Authentication
+---
 
 To authenticate against our API you need verify your credentials. In return you receive a token identifying you as
-the resource owner (user), granting you a certain amount of permissions. Please note: this token does NOT give you the 
-privilege to access or work with resources like things, units or connectors since all of them are related to apps 
-and not to developer accounts. Instead, this token can be used to access resources like apps (e.g. setup/manage your 
+the resource owner (user), granting you a certain amount of permissions. Please note: this token does NOT give you the
+privilege to access or work with resources like things, units or connectors since all of them are related to apps
+and not to developer accounts. Instead, this token can be used to access resources like apps (e.g. setup/manage your
 apps). If you would like to know how you can get an app token in order to work with things and units head over to the
 oauth2 section.
 
@@ -35,7 +36,7 @@ oauth2 section.
 }
 ```
 
-The response will either have the status code 200 in case of success or 401 in case the 
+The response will either have the status code 200 in case of success or 401 in case the
 supplied credentials can't be verified. In error cases a default error object is
 returned in the body. This flow is the only way to get a token with the scope connctd.core.
 

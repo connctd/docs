@@ -6,6 +6,7 @@ import {
     Navbar, Logo, Navgroup, Menugroup, Paper, Anchor, Menuarrow, defaultTheme, GlobalStyle,
 } from "@connctd/quartz"
 import rehypeReact from "rehype-react"
+import { Sidebar } from "./sidebar"
 
 const docsTheme = defaultTheme
 
@@ -34,14 +35,21 @@ const renderAst = new rehypeReact({
 }).Compiler
 
 const Container = styled.div`
-    background-color: #FAFAFA;
-    min-height: 100%;
+    display: grid;
+    grid-template-areas: "sidebar content";
+    grid-template-columns: 250px 1fr;
+    grid-column-start: auto;
+    height: 100%;
 `
 
 const Content = styled.div`
-    padding-top: 10px;
-    max-width: 1200px;
+    grid-area: content;
     margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 10px 50px;
+
+    color: #2D2D2D;
 
     @media screen and (max-width: 1400px) {
         width: 80vw;
@@ -52,13 +60,13 @@ const Content = styled.div`
     }
 `
 
-export default function PageTemplate({ data: { file } }) {
+export default function PageTemplate({ data: { file }, pageContext: { allDocs } }) {
     const { frontmatter } = file.childMarkdownRemark || file.childMdx
     return (
         <>
         <GlobalStyle />
         <ThemeProvider theme={docsTheme}>
-            <Container>
+            <>
                 <Navbar>
                     <div className="Items">
                         <Anchor href="/">
@@ -67,7 +75,7 @@ export default function PageTemplate({ data: { file } }) {
                     </div>
                     <div className="Items">
                         <Navgroup>
-                            <Anchor href="https://devcenter.connctd.io/">Apps</Anchor>
+                            <Anchor href="https://devcenter.connctd.io/">Devcenter</Anchor>
                         </Navgroup>
                     </div>
                     <div className="Staples">
@@ -83,8 +91,9 @@ export default function PageTemplate({ data: { file } }) {
                         </Navgroup>
                     </div>
                 </Navbar>
-                <Content>
-                    <Paper>
+                <Container>
+                    <Sidebar links={allDocs} />
+                    <Content>
                         <h1>{frontmatter.title}</h1>
                         {file.childMdx ? (
                             <MDXRenderer scope={undefined} components={undefined}>
@@ -93,9 +102,9 @@ export default function PageTemplate({ data: { file } }) {
                         ) : (
                             renderAst(file.childMarkdownRemark.htmlAst)
                         )}
-                    </Paper>
-                </Content>
-            </Container>
+                    </Content>
+                </Container>
+            </>
         </ThemeProvider>
         </>
     )

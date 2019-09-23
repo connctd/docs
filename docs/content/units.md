@@ -1,4 +1,6 @@
-# Units
+---
+title: Units
+---
 
 A unit is a primitive container that gives developers the possibility to group things and to put them into a context. Since a unit can reference other units (children and parents) even complex structures of the real world can be modeled like for example a city with it's streets and buildings.
 
@@ -10,7 +12,7 @@ A unit is a primitive container that gives developers the possibility to group t
   </ul>
 </aside>
 
-## Model 
+## Model
 
 ```json
 {
@@ -24,7 +26,6 @@ A unit is a primitive container that gives developers the possibility to group t
   "subjects": [{"href":"https://api.connctd.io/api/v1/subjects/98..."}],
   "owner": "65...."
 }
-
 ```
 
 On the right hand side you can see an exemplary unit. We also offer a [unit json schema](https://github.com/connctd/future-platform/blob/master/domain/unit-schema.json) which allows json object validation.
@@ -95,7 +96,7 @@ Required scope: `connctd.units.admin`
     "href": "https://api.connctd.io/api/v1/units/37cbbcfb-9a5c-4931-aa55-f73ff0af0e80"
   }, ...
 ]
-    
+
 ```
 
 Retrieves a list of resource links to units the user belongs to
@@ -137,7 +138,7 @@ Required scope: `connctd.units.read`
   "parents": [],
   "subjects": [],
   "owner": "1"
-}   
+}
 ```
 
 Retrieves a unit by id
@@ -214,7 +215,7 @@ Adds a reference to another unit. The reference also appears within the referenc
 Required scope: `connctd.units.admin`
 
 ## Remove unit reference
- 
+
 > **Request**<br>
 > DELETE https://api.connctd.io/api/v1/units/-unitId-/-parents|children-<br>
 > *Headers:*<br>
@@ -264,11 +265,11 @@ Retrieves list of subject references
 Required scope: `connctd.units.read`
 
 <aside class="note">
-Subject references can be used to assign (external) subject ids to a specific unit. As soon a one external subject (lets say for example S1) is assigned to the unit of another subject (lets say S2), the result list when retrieving the units of S1 will contain the unit of S2.   
+Subject references can be used to assign (external) subject ids to a specific unit. As soon a one external subject (lets say for example S1) is assigned to the unit of another subject (lets say S2), the result list when retrieving the units of S1 will contain the unit of S2.
 </aside>
 
 ## Add subject reference
- 
+
 > **Request**<br>
 > POST https://api.connctd.io/api/v1/units/-unitId-/subjects<br>
 > *Headers:*<br>
@@ -313,7 +314,7 @@ Removes a reference to a subject.
 Required scope: `connctd.units.admin`
 
 ## Get properties
- 
+
 > **Request**<br>
 > GET https://api.connctd.io/api/v1/units/-unitId-/properties<br>
 > *Headers:*<br>
@@ -439,7 +440,7 @@ Removes a property from property set
 Required scope: `connctd.units.admin`
 
 ## Get thing references
- 
+
 > **Request**<br>
 > GET https://api.connctd.io/api/v1/units/-unitId-/things<br>
 > *Headers:*<br>
@@ -467,7 +468,7 @@ Retrieves a list of all thing references
 Required scope: `connctd.units.read`
 
 ## Add thing reference
- 
+
 > **Request**<br>
 > POST https://api.connctd.io/api/v1/units/-unitId-/things<br>
 > *Headers:*<br>

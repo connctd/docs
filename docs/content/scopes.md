@@ -1,4 +1,6 @@
-# Scopes
+---
+title: Scopes
+---
 
 Scopes are attached to access tokens and specify the actions that can be performed on resources.
 

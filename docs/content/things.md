@@ -1,4 +1,6 @@
-# Things
+---
+title: Things
+---
 
 Things in our API are abstract representations of specific IoT related devices. They can be created, deleted
 and managed with our API. Depending on the requested action the supplied token must have certain scopes.
@@ -65,7 +67,7 @@ Available scopes for Things:
               "type": "<type of parameter(NUMBER,STRING or BOOLEAN>"
             }
           ]
-        }   
+        }
       ]
     }
   ]
@@ -90,7 +92,7 @@ process. After this you are able to create Things with the following request.
 Required scope: `connctd.connector`
 
 <aside class="notice">The Thing-ID needs to be unique across all Things in our API. Therefore it is
-possible that the Thing-ID is changed by our backend. The actual Thing-ID is returned in case of 
+possible that the Thing-ID is changed by our backend. The actual Thing-ID is returned in case of
 success.</aside>
 
 
@@ -335,7 +337,7 @@ Required scope: `connctd.connector`
 > *Body:* Empty body
 
 If the supplied bearer token has the scope `connctd.connector` and the Thing with the specified
-id was created by the application belongig to the bearer token, this request will delete the 
+id was created by the application belongig to the bearer token, this request will delete the
 specified Thing.
 
 Required scope: `connctd.connector`

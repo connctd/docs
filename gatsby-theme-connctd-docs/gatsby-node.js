@@ -4,7 +4,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     // We only want to operate on `Mdx` nodes. If we had content from a
     // remote CMS we could also check to see if the parent node was a
     // `File` node here
-    console.log({ type: node.internal.type })
     if (["MarkdownRemark", "Mdx"].includes(node.internal.type)) {
         const slug = createFilePath({
             node,
@@ -24,6 +23,9 @@ const pageFragment = `
   }
   fields {
     slug
+  }
+  frontmatter {
+    title
   }
 `
 
@@ -69,7 +71,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             component: require.resolve("./src/components/docs-page-layout.tsx"),
             // We can use the values in this context in
             // our page layout component
-            context: { id: node.id },
+            context: {
+                id: node.id,
+                allDocs: posts,
+            },
         })
     })
 }

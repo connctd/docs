@@ -1,9 +1,11 @@
-# OAuth 2.0
+---
+title: OAuth 2.0
+---
 
 The connctd platform acts as a oauth2 provider implementing all flows described in
 [rfc6749](https://tools.ietf.org/html/rfc6749#section-4) except the "Resource Owner Password Credentials Grant". If you
 are planning to develop an app which makes use of e.g. things and units, we highly recommend the
-"Clients Credentials Flow". This flow will generate a token which ensures that all things and units your 
+"Clients Credentials Flow". This flow will generate a token which ensures that all things and units your
 app creates will exclusively belong to your app. If you are planning to develop a more advanced app that needs to
 access things and units that are managed by another app, you need to make use of the
 "Authorization Code Grant Flow" as the access to foreign app resources requires the permission of the foreign app
