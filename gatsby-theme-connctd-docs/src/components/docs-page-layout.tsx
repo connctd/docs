@@ -7,6 +7,7 @@ import {
 } from "@connctd/quartz"
 import rehypeReact from "rehype-react"
 import { Sidebar } from "./sidebar"
+import Article from "./docs-article"
 
 const docsTheme = defaultTheme
 
@@ -42,35 +43,6 @@ const Container = styled.div`
     height: 100%;
 `
 
-const Content = styled.article`
-    grid-area: content;
-    margin: auto;
-    max-width: 800px;
-    justify-self: start;
-    height: 100%;
-    padding: 10px 50px;
-    line-height: 1.45;
-
-    li {
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-
-    p {
-        color: #21243d;
-    }
-
-    color: #21243d;
-
-    @media screen and (max-width: 1400px) {
-        width: 80vw;
-    }
-
-    @media screen and (max-width: 600px) {
-        width: 100%;
-    }
-`
-
 export default function PageTemplate({ data: { file }, pageContext: { allDocs } }) {
     const { frontmatter } = file.childMarkdownRemark || file.childMdx
     return (
@@ -104,8 +76,9 @@ export default function PageTemplate({ data: { file }, pageContext: { allDocs } 
                 </Navbar>
                 <Container>
                     <Sidebar links={allDocs} />
-                    <Content>
-                        <h1>{frontmatter.title}</h1>
+                    <Article
+                        title={frontmatter.title}
+                    >
                         {file.childMdx ? (
                             <MDXRenderer scope={undefined} components={undefined}>
                                 {file.childMdx.body}
@@ -113,7 +86,7 @@ export default function PageTemplate({ data: { file }, pageContext: { allDocs } 
                         ) : (
                             renderAst(file.childMarkdownRemark.htmlAst)
                         )}
-                    </Content>
+                    </Article>
                 </Container>
             </>
         </ThemeProvider>
