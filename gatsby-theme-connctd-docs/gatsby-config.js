@@ -13,6 +13,7 @@ const gatsbyRemarkPlugins = [
         resolve: "gatsby-remark-code-buttons",
         options: {
             buttonText: "Copy",
+            svgIcon: "",
             toasterClass: "Copied to clipboard",
         },
     },
