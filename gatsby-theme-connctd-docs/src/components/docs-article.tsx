@@ -65,6 +65,14 @@ const Content = styled.article<{theme?: QuartzTheme, }>`
         border-radius: 0 4px 0 0;
         font-size: 12px;
     }
+
+    blockquote {
+        background-color: #F9F9F9;
+        margin: 0;
+        padding: 10px 2em;
+        border-radius: 5px;
+        box-shadow: inset 0 0 0 1px rgba(148,151,155,0.2);
+    }
 `
 
 const Title = styled.h1`
