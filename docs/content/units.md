@@ -28,8 +28,6 @@ A unit is a primitive container that gives developers the possibility to group t
 }
 ```
 
-On the right hand side you can see an exemplary unit. We also offer a [unit json schema](https://github.com/connctd/future-platform/blob/master/domain/unit-schema.json) which allows json object validation.
-
 The unit **type** helps to interprete the meaning of a unit. It is meant to be kept very generic like "ROOM" OR "BUILDING" instead of using too meaningful types like "BATHROOM". If your app requires more information about a unit it is a good way to describe them within the **properties**. Those properties can hold arbitrary information since json objects can be passed. Even json ld is allowed to semantically enrich them. A json ld processor takes care of object validation.
 
 The values of the properties **parents**, **children**, **subjects** and **things** are lists holding references to other resources.
