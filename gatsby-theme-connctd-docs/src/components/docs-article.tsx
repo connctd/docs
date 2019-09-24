@@ -66,6 +66,18 @@ const Content = styled.article<{theme?: QuartzTheme, }>`
         font-size: 12px;
     }
 
+    .gatsby-code-title {
+        margin-top: 25px;
+        padding: 7px 12px;
+        margin-bottom: -25px;
+        text-align: left;
+        font-family: 'Hind';
+        font-style: none;
+        color: white;
+        letter-spacing: 0.01em;
+        border-radius: 4px 4px 0 0;
+    }
+
     blockquote {
         background-color: #F9F9F9;
         margin: 0;

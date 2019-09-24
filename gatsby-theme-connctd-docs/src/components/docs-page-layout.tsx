@@ -12,7 +12,7 @@ import Article from "./docs-article"
 const docsTheme = defaultTheme
 
 export const pageQuery = graphql`
-  query BlogPostQuery($id: String) {
+  query DocsPostQuery($id: String) {
     file(id: {eq: $id}) {
       childMarkdownRemark {
         frontmatter {

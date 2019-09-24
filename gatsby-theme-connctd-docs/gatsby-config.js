@@ -82,6 +82,8 @@ const gatsbyRemarkPlugins = [
 
 module.exports = {
     plugins: [
+        "gatsby-plugin-manifest",
+        "gatsby-plugin-offline",
         "gatsby-plugin-typescript",
         "gatsby-plugin-styled-components",
         {

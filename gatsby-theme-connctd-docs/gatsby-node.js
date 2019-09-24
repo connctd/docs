@@ -26,6 +26,10 @@ const pageFragment = `
   }
   frontmatter {
     title
+    order
+  }
+  headings(depth: h2) {
+    value
   }
 `
 
@@ -63,6 +67,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     posts.forEach(({ node }, index) => {
         const { fields } = getPageFromEdge(node)
+        const allDocs = [...posts]
+        allDocs.sort((a, b) => {
+            const orderA = getPageFromEdge(a.node).frontmatter.order
+                ? getPageFromEdge(a.node).frontmatter.order : 2
+            const orderB = getPageFromEdge(b.node).frontmatter.order
+                ? getPageFromEdge(b.node).frontmatter.order : 2
+            return orderA > orderB
+        })
         createPage({
             // This is the slug we created before
             // (or `node.frontmatter.slug`)
@@ -73,7 +85,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             // our page layout component
             context: {
                 id: node.id,
-                allDocs: posts,
+                allDocs,
             },
         })
     })
