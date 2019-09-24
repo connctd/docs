@@ -7,7 +7,6 @@ const SidebarContainer = styled.div`
     width: 100%;
     background-color: #FAFAFA;
     border-right: 1px solid #C4C4C4;
-    height: 100%;
 `
 
 
@@ -36,7 +35,7 @@ interface LinkNode {
     childMdx?: LinkFragment
 }
 
-interface Link {
+interface SideBarLink {
     node: LinkNode
 }
 
@@ -64,11 +63,11 @@ const Container = styled.div`
 
 const pageNode = (node: LinkNode) => node.childMdx || node.childMarkdownRemark
 
-export const Sidebar: React.FC<{links: Link[], }> = ({ links }) => (
+export const Sidebar: React.FC<{links: SideBarLink[], }> = ({ links }) => (
     <SidebarContainer>
         <Container>
             {
-                links.map((l: Link) => {
+                links.map((l: SideBarLink) => {
                     const node = pageNode(l.node)
                     return (
                         <div>
