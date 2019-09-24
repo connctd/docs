@@ -35,7 +35,7 @@ interface Link {
 }
 
 const Container = styled.div`
-    padding: 20px 10px;
+    padding: 20px 20px;
     h4 {
         font-weight: normal;
         margin: 8px 0px;

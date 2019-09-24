@@ -64,8 +64,6 @@ As already mentioned in the introduction adding this flow to your app only makes
 > GET https://YOURREDIRECTIONURL/...?https://tutorial.connctd.io/callback?error=invalid_scope
 > &error_description=The+requested+scope+is+invalid%2C+unknown%2C+or+malformed
 > &state=abcdefghijklmnoaasa
-```json
-```
 
 This request needs to be called by the developer of the app to which resources you would like to get access to. The
 request will redirect the developer to connctds consent screen. After he has logged in he is asked weather your app is

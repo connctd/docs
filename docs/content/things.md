@@ -105,8 +105,6 @@ success.</aside>
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -133,8 +131,6 @@ Required scope: `connctd.things.read`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* emptybr>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -170,8 +166,6 @@ Required scope: `connctd.things.read`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -217,8 +211,6 @@ Required scope: `connctd.things.read`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -329,8 +321,6 @@ Required scope: `connctd.connector`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>

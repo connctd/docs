@@ -42,14 +42,19 @@ const Container = styled.div`
     height: 100%;
 `
 
-const Content = styled.div`
+const Content = styled.article`
     grid-area: content;
     margin: auto;
-    width: 100%;
+    max-width: 800px;
+    justify-self: start;
     height: 100%;
     padding: 10px 50px;
 
-    color: #2D2D2D;
+    p {
+        color: #21243d;
+    }
+
+    color: #21243d;
 
     @media screen and (max-width: 1400px) {
         width: 80vw;

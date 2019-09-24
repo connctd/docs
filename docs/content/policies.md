@@ -76,8 +76,6 @@ Required scope: `connctd.policies.read or connctd.core`
 
 > **Request:** *Method:* GET *Url:* https://api.connctd.io/api/v1/policies
 
-```json
-```
 
 > **Response:** *Code:* 200 *Body:* List of policy references. See example below
 
@@ -97,8 +95,6 @@ Required scope: `connctd.policies.read or connctd.core`
 
 > **Request:** *Method:* GET *Url:* https://api.connctd.io/api/v1/policies/-policyid-
 
-```json
-```
 
 > **Response:** *Code:* 200 *Body:* Policy. See example below
 
@@ -128,7 +124,5 @@ Required scope: `connctd.policies.admin or connctd.core`
 
 > **Request:** *Method:* DELETE *Url:* https://api.connctd.io/api/v1/policies/-policyid-
 
-```json
-```
 
 > **Response:** *Code:* 200 *Body:* Empty body

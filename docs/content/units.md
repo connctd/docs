@@ -81,8 +81,6 @@ Required scope: `connctd.units.admin`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -110,8 +108,6 @@ Required scope: `connctd.units.read`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -152,8 +148,6 @@ Required scope: `connctd.units.read`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 204
@@ -171,8 +165,6 @@ Required scope: `connctd.units.admin`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -243,8 +235,6 @@ Required scope: `connctd.units.admin`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -320,8 +310,6 @@ Required scope: `connctd.units.admin`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -349,8 +337,6 @@ Required scope: `connctd.units.read`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -424,14 +410,10 @@ Required scope: `connctd.units.admin`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200
 
-```json
-```
 
 Removes a property from property set
 
@@ -446,8 +428,6 @@ Required scope: `connctd.units.admin`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>

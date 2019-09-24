@@ -49,8 +49,6 @@ returned in the body. This flow is the only way to get a token with the scope co
 > &nbsp;Authorization:YOUR TOKEN<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>

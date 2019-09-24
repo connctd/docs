@@ -16,8 +16,6 @@ Basically a connector can be understood as a piece of code which connects a remo
 > *Headers:* none<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -90,8 +88,6 @@ Required scope: `connctd.connector`
 > &nbsp;Authorization:YOUR TOKEN<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -118,8 +114,6 @@ Required scope: `connctd.connector`
 > &nbsp;Authorization:YOUR TOKEN<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -151,8 +145,6 @@ Required scope: `connctd.connector`
 > &nbsp;Authorization:YOUR TOKEN<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 204<br>
@@ -204,8 +196,6 @@ Required scope: `connctd.connector`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -233,8 +223,6 @@ Required scope: `connctd.connector`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
@@ -274,8 +262,6 @@ Required scope: `connctd.connector`
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
 > *Body:* empty<br>
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 204<br>
@@ -296,8 +282,6 @@ Required scope: `connctd.connector`
 > *Body:* empty<br>
 
 
-```json
-```
 
 > **Response**<br>
 > *Code:* 200<br>
