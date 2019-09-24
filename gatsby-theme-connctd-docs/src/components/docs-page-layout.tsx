@@ -49,6 +49,12 @@ const Content = styled.article`
     justify-self: start;
     height: 100%;
     padding: 10px 50px;
+    line-height: 1.45;
+
+    li {
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
 
     p {
         color: #21243d;
