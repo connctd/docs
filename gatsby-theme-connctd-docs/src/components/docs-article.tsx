@@ -30,13 +30,10 @@ const Content = styled.article<{theme?: QuartzTheme, }>`
         border-top: 1px solid ${props => props.theme.light50};
     }
 
-
-    @media screen and (max-width: 1400px) {
-        width: 80vw;
-    }
-
-    @media screen and (max-width: 600px) {
-        width: 100%;
+    a {
+        color: ${props => props.theme.secondary};
+        text-decoration-style: text-decoration-skip;
+        text-decoration: underline;
     }
 
     ul {

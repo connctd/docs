@@ -10,14 +10,6 @@ const gatsbyRemarkPlugins = [
     },
     "gatsby-remark-prismjs-title",
     {
-        resolve: "gatsby-remark-code-buttons",
-        options: {
-            buttonText: "Copy",
-            svgIcon: "",
-            toasterClass: "Copied to clipboard",
-        },
-    },
-    {
         resolve: "gatsby-remark-prismjs",
         options: {
             // Class prefix for <pre> tags containing syntax highlighting;

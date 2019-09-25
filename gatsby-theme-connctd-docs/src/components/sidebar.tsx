@@ -42,12 +42,12 @@ interface SideBarLink {
 const Container = styled.div`
     padding: 20px 20px;
     h4 {
-        font-weight: normal;
         margin: 8px 0px;
         padding: 0;
-        text-transform: uppercase;
-        color: #474747;
+        color: #21243d;
+        letter-spacing: 0.04em;
     }
+    color: #474747;
 
     ul {
         list-style: none;
@@ -58,6 +58,11 @@ const Container = styled.div`
             padding: 0;
             margin: 10px 0 0 0;
         }
+    }
+
+    hr {
+        border: 0px;
+        border-top: 1px solid ${props => props.theme.light50};
     }
 `
 
@@ -77,9 +82,12 @@ export const Sidebar: React.FC<{links: SideBarLink[], }> = ({ links }) => (
                                 </Link>
                             </h4>
                             {node.headings.length > 0 && (
+                                <>
                                 <ul>
                                     {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`}><li>{h.value}</li></Link>)}
                                 </ul>
+                            <hr />
+                                </>
                             )}
                         </div>
 

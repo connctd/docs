@@ -38,7 +38,7 @@ const renderAst = new rehypeReact({
 const Container = styled.div`
     display: grid;
     grid-template-areas: "sidebar content";
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 250px auto;
     grid-column-start: auto;
     height: 100%;
 `
