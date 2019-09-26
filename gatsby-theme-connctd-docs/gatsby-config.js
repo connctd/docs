@@ -82,7 +82,7 @@ module.exports = {
         title: "connctd Docs | IoT Service Creation Simplified",
         titleTemplate: "%s | connctd IoT Service Creation Simplified",
         description:
-          "Hogwarts Potions master, Head of Slytherin house and former Death Eater.",
+          "Powerful domain agnostic semantic abstraction for IoT. The scalable and robust platform for the Internet of Things.",
         url: "https://docs.connctd.io",
         twitterUsername: "@connctd",
     },
@@ -106,6 +106,14 @@ module.exports = {
             options: {
                 name: "docs",
                 path: path.resolve("content"),
+            },
+        },
+        {
+            resolve: "gatsby-plugin-sentry",
+            options: {
+                dsn: "https://a1617ccc3dfe4c45bbf76aaad7357528@sentry.io/1762704",
+                environment: process.env.NODE_ENV,
+                enabled: (process.env.NODE_ENV === "production"),
             },
         },
         {

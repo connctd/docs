@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby clean && gatsby develop",
-    "build": "gatsby build",
+    "build": "NODE_ENV=production; gatsby build",
     "start": "gatsby clean && gatsby develop",
     "watch": "rm -rf ./.cache && nodemon --watch ../gatsby-theme-connctd-docs -e js,ts,tsx,json --exec yarn start"
   },
