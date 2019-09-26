@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import { QuartzTheme } from "@connctd/quartz"
 
 const Content = styled.article<{theme?: QuartzTheme, }>`

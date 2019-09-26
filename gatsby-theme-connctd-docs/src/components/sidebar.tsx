@@ -1,6 +1,7 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import { Link } from "gatsby"
+import { Themeable } from "@connctd/quartz"
 
 const SidebarContainer = styled.div`
     position: fixed;
@@ -42,7 +43,7 @@ interface SideBarLink {
     node: LinkNode
 }
 
-const Container = styled.div`
+const Container = styled.div<Themeable>`
     padding: 20px 20px 100px 20px;
     h4 {
         margin: 8px 0px;
@@ -78,8 +79,8 @@ export const Sidebar: React.FC<{links: SideBarLink[], }> = ({ links }) => (
                 links.map((l: SideBarLink) => {
                     const node = pageNode(l.node)
                     return (
-                        <div>
-                            <h4 key={node.fields.slug}>
+                        <div key={node.fields.slug}>
+                            <h4>
                                 <Link to={node.fields.slug}>
                                     {node.frontmatter.title || l.node.id}
                                 </Link>
@@ -87,9 +88,9 @@ export const Sidebar: React.FC<{links: SideBarLink[], }> = ({ links }) => (
                             {node.headings.length > 0 && (
                                 <>
                                 <ul>
-                                    {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`}><li>{h.value}</li></Link>)}
+                                    {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`} key={h.value}><li>{h.value}</li></Link>)}
                                 </ul>
-                            <hr />
+                                <hr />
                                 </>
                             )}
                         </div>

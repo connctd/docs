@@ -77,7 +77,7 @@ module.exports = {
         "gatsby-plugin-manifest",
         "gatsby-plugin-offline",
         "gatsby-plugin-typescript",
-        "gatsby-plugin-styled-components",
+        "gatsby-plugin-emotion",
         {
             resolve: "gatsby-transformer-remark",
             options: {
