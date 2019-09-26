@@ -100,5 +100,14 @@ module.exports = {
                 path: path.resolve("content"),
             },
         },
+        {
+            resolve: "gatsby-plugin-google-analytics",
+            options: {
+                trackingId: "UA-70924307-3",
+                head: false,
+                anonymize: true,
+                respectDNT: true,
+            },
+        },
     ],
 }
