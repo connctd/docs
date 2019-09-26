@@ -78,6 +78,14 @@ const gatsbyRemarkPlugins = [
 ]
 
 module.exports = {
+    siteMetadata: {
+        title: "connctd Docs | IoT Service Creation Simplified",
+        titleTemplate: "%s | connctd IoT Service Creation Simplified",
+        description:
+          "Hogwarts Potions master, Head of Slytherin house and former Death Eater.",
+        url: "https://docs.connctd.io",
+        twitterUsername: "@connctd",
+    },
     plugins: [
         "gatsby-plugin-manifest",
         "gatsby-plugin-offline",

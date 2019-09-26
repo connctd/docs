@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "@emotion/styled"
 import {
@@ -8,13 +8,23 @@ import {
 import rehypeReact from "rehype-react"
 import { Global } from "@emotion/core"
 import { ThemeProvider } from "emotion-theming"
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { Sidebar } from "./sidebar"
 import Article from "./docs-article"
+import SEO from "./seo"
+
 
 const docsTheme = defaultTheme
 
 export const pageQuery = graphql`
   query DocsPostQuery($id: String) {
+    site {
+      siteMetadata {
+        title
+        description
+        titleTemplate
+      }
+    }
     file(id: {eq: $id}) {
       childMarkdownRemark {
         frontmatter {
@@ -48,23 +58,33 @@ const FixedNav = styled.div`
     z-index: 100;
 `
 
-export default function PageTemplate({ data: { file }, pageContext: { allDocs } }) {
+export default function PageTemplate({
+    data: { file, site: { siteMetadata } },
+    pageContext: { allDocs },
+}) {
     const { frontmatter } = file.childMarkdownRemark || file.childMdx
     return (
         <>
+        <SEO
+            title={frontmatter.title}
+            description={frontmatter.description || siteMetadata.description}
+            siteName={siteMetadata.title}
+            twitterHandle={siteMetadata.twitterHandle}
+            titleTemplate={siteMetadata.titleTemplate}
+        />
         <Global styles={GlobalStyle} />
         <ThemeProvider theme={docsTheme}>
             <>
                 <FixedNav>
                     <Navbar>
                         <div className="Items">
-                            <Anchor href="/">
+                            <Link to="/">
                                 <Logo fill="#FFFFFF" width={120} />
-                            </Anchor>
+                            </Link>
                         </div>
                         <div className="Items">
                             <NavGroup>
-                                <Anchor href="https://devcenter.connctd.io/">Devcenter</Anchor>
+                                <OutboundLink href="https://devcenter.connctd.io/">Devcenter</OutboundLink>
                             </NavGroup>
                         </div>
                         <div className="Staples">
@@ -74,8 +94,8 @@ export default function PageTemplate({ data: { file }, pageContext: { allDocs } 
                                     <MenuArrow down />
                                 </div>
                                 <MenuGroup>
-                                    <Anchor href="https://docs.connctd.io">API Docs</Anchor>
-                                    <Anchor href="https://tutorial.connctd.io">Tutorials</Anchor>
+                                    <Link to="/">API Docs</Link>
+                                    <OutboundLink href="https://tutorial.connctd.io">Tutorials</OutboundLink>
                                 </MenuGroup>
                             </NavGroup>
                         </div>
