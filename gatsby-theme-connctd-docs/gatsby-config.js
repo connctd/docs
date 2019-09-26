@@ -1,7 +1,12 @@
 const path = require("path")
 
 const gatsbyRemarkPlugins = [
-    "gatsby-remark-autolink-headers",
+    {
+        resolve: "gatsby-remark-autolink-headers",
+        options: {
+            offsetY: 70,
+        },
+    },
     {
         resolve: "gatsby-remark-copy-linked-files",
         options: {
