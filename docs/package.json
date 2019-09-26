@@ -5,7 +5,7 @@
   "author": "Pandelis Zembashis <pandelis.zembashis@connctd.com> (@pandelisz)",
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "gatsby clean && gatsby develop",
     "build": "gatsby build",
     "start": "gatsby develop",
     "watch": "rm -rf ./.cache && nodemon --watch ../gatsby-theme-connctd-docs -e js,ts,tsx,json --exec yarn start"
@@ -20,5 +20,8 @@
   "devDependencies": {
     "@connctd/eslint-config-typescript": "^1.0.3",
     "nodemon": "^1.19.2"
+  },
+  "resolve": {
+    "styled-components": "4.3.0"
   }
 }

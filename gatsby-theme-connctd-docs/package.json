@@ -28,5 +28,8 @@
     "prismjs": "^1.17.1",
     "rehype-react": "^4.0.1",
     "styled-components": "^4.3.2"
+  },
+  "resolutions": {
+    "styled-components": "4.3.2"
   }
 }

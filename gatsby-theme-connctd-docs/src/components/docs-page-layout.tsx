@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled, { ThemeProvider } from "styled-components"
 import {
-    Navbar, Logo, Navgroup, Menugroup, Paper, Anchor, Menuarrow, defaultTheme, GlobalStyle,
+    Navbar, Logo, NavGroup, MenuGroup, Anchor, MenuArrow, defaultTheme, GlobalStyle,
 } from "@connctd/quartz"
 import rehypeReact from "rehype-react"
 import { Sidebar } from "./sidebar"
@@ -36,11 +36,11 @@ const renderAst = new rehypeReact({
 }).Compiler
 
 const Container = styled.div`
-    display: grid;
-    grid-template-areas: "sidebar content";
-    grid-template-columns: 250px auto;
-    grid-column-start: auto;
     height: 100%;
+`
+
+const FixedNav = styled(Navbar)`
+    position: fixed;
 `
 
 export default function PageTemplate({ data: { file }, pageContext: { allDocs } }) {
@@ -50,30 +50,30 @@ export default function PageTemplate({ data: { file }, pageContext: { allDocs } 
         <GlobalStyle />
         <ThemeProvider theme={docsTheme}>
             <>
-                <Navbar>
+                <FixedNav>
                     <div className="Items">
                         <Anchor href="/">
                             <Logo fill="#FFFFFF" width={120} />
                         </Anchor>
                     </div>
                     <div className="Items">
-                        <Navgroup>
+                        <NavGroup>
                             <Anchor href="https://devcenter.connctd.io/">Devcenter</Anchor>
-                        </Navgroup>
+                        </NavGroup>
                     </div>
                     <div className="Staples">
-                        <Navgroup>
+                        <NavGroup>
                             <div style={{ width: 170, textAlign: "right" }}>
                                 DOCS
-                                <Menuarrow down />
+                                <MenuArrow down />
                             </div>
-                            <Menugroup>
+                            <MenuGroup>
                                 <Anchor href="https://docs.connctd.io">API Docs</Anchor>
                                 <Anchor href="https://tutorial.connctd.io">Tutorials</Anchor>
-                            </Menugroup>
-                        </Navgroup>
+                            </MenuGroup>
+                        </NavGroup>
                     </div>
-                </Navbar>
+                </FixedNav>
                 <Container>
                     <Sidebar links={allDocs} />
                     <Article

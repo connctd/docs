@@ -3,8 +3,11 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 
 const SidebarContainer = styled.div`
-    grid-area: sidebar;
-    width: 100%;
+    position: fixed;
+    overflow: auto;
+    height: calc(100vh - 50px);
+    top: 50px;
+    width: 250px;
     background-color: #FAFAFA;
     border-right: 1px solid #C4C4C4;
 `
@@ -40,7 +43,7 @@ interface SideBarLink {
 }
 
 const Container = styled.div`
-    padding: 20px 20px;
+    padding: 20px 20px 100px 20px;
     h4 {
         margin: 8px 0px;
         padding: 0;

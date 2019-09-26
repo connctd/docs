@@ -1,0 +1,4 @@
+// This is here and is empty because of this silly billy little bug which drove me right
+// up the wall trying to figure out. I contemplated switching the whole styled-components
+// pipeline to emotion I was so desperate.
+//https://github.com/gatsbyjs/gatsby/issues/5493

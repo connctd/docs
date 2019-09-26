@@ -93,12 +93,20 @@ interface ArticleProps {
     children: React.ReactNode
 }
 
+const Container = styled.div`
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    margin-top: 50px;
+`
+
 export const Article: React.FC<ArticleProps> = ({ title, children }) => (
-    <Content>
-        <Title>{title}</Title>
-        <hr />
-        {children}
-    </Content>
+    <Container>
+        <Content>
+            <Title>{title}</Title>
+            <hr />
+            {children}
+        </Content>
+    </Container>
 )
 
 export default Article
