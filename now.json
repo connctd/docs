@@ -5,9 +5,6 @@
       {
         "src": "package.json",
         "use": "@now/static-build",
-        "config": { "distDir": "public" },
-        "env": {
-          "CNCTD_NPM_TOKEN": "@npm_token"
-        }
+        "config": { "distDir": "public" }
       }
   }
