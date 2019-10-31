@@ -13,7 +13,7 @@ const Content = styled.article<{theme?: QuartzTheme, }>`
     color: #21243d;
 
     h1 {
-        font-size: 2.6em;
+        font-size: 60px;
     }
 
     li {
@@ -86,11 +86,14 @@ const Content = styled.article<{theme?: QuartzTheme, }>`
 
 const Title = styled.h1`
     margin-bottom: 0px;
+    margin-top: 0;
+    padding: 0;
 `
 
 interface ArticleProps {
     title: string
     children: React.ReactNode
+    githubUrl: string
 }
 
 const Container = styled.div`
@@ -99,11 +102,31 @@ const Container = styled.div`
     margin-top: 50px;
 `
 
-export const Article: React.FC<ArticleProps> = ({ title, children }) => (
+const TitleBlock = styled.header`
+    a {
+        color: #6d6d6d;
+        text-decoration: none;
+    }
+`
+
+const EditLink = styled.a`
+    float: right;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+`
+
+const ArticleTitle = ({ text, editUrl }) => (
+    <TitleBlock>
+        <EditLink href={editUrl}>Edit</EditLink>
+        <Title>{text}</Title>
+        <hr />
+    </TitleBlock>
+)
+
+export const Article: React.FC<ArticleProps> = ({ title, children, githubUrl }) => (
     <Container>
         <Content>
-            <Title>{title}</Title>
-            <hr />
+            <ArticleTitle text={title} editUrl={githubUrl} />
             {children}
         </Content>
     </Container>

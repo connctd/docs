@@ -60,63 +60,64 @@ const FixedNav = styled.div`
 
 export default function PageTemplate({
     data: { file, site: { siteMetadata } },
-    pageContext: { allDocs },
+    pageContext: { allDocs, githubUrl },
 }) {
     const { frontmatter } = file.childMarkdownRemark || file.childMdx
     return (
         <>
-        <SEO
-            title={frontmatter.title}
-            description={frontmatter.description || siteMetadata.description}
-            siteName={siteMetadata.title}
-            twitterHandle={siteMetadata.twitterHandle}
-            titleTemplate={siteMetadata.titleTemplate}
-        />
-        <Global styles={GlobalStyle} />
-        <ThemeProvider theme={docsTheme}>
-            <>
-                <FixedNav>
-                    <Navbar>
-                        <div className="Items">
-                            <Link to="/">
-                                <Logo fill="#FFFFFF" width={120} />
-                            </Link>
-                        </div>
-                        <div className="Items">
-                            <NavGroup>
-                                <OutboundLink href="https://devcenter.connctd.io/">Devcenter</OutboundLink>
-                            </NavGroup>
-                        </div>
-                        <div className="Staples">
-                            <NavGroup>
-                                <div style={{ width: 170, textAlign: "right" }}>
+            <SEO
+                title={frontmatter.title}
+                description={frontmatter.description || siteMetadata.description}
+                siteName={siteMetadata.title}
+                twitterHandle={siteMetadata.twitterHandle}
+                titleTemplate={siteMetadata.titleTemplate}
+            />
+            <Global styles={GlobalStyle} />
+            <ThemeProvider theme={docsTheme}>
+                <>
+                    <FixedNav>
+                        <Navbar>
+                            <div className="Items">
+                                <Link to="/">
+                                    <Logo fill="#FFFFFF" width={120} />
+                                </Link>
+                            </div>
+                            <div className="Items">
+                                <NavGroup>
+                                    <OutboundLink href="https://devcenter.connctd.io/">Devcenter</OutboundLink>
+                                </NavGroup>
+                            </div>
+                            <div className="Staples">
+                                <NavGroup>
+                                    <div style={{ width: 170, textAlign: "right" }}>
                                 DOCS
-                                    <MenuArrow down />
-                                </div>
-                                <MenuGroup>
-                                    <Link to="/">API Docs</Link>
-                                    <OutboundLink href="https://tutorial.connctd.io">Tutorials</OutboundLink>
-                                </MenuGroup>
-                            </NavGroup>
-                        </div>
-                    </Navbar>
-                </FixedNav>
-                <Container>
-                    <Sidebar links={allDocs} />
-                    <Article
-                        title={frontmatter.title}
-                    >
-                        {file.childMdx ? (
-                            <MDXRenderer scope={undefined} components={undefined}>
-                                {file.childMdx.body}
-                            </MDXRenderer>
-                        ) : (
-                            renderAst(file.childMarkdownRemark.htmlAst)
-                        )}
-                    </Article>
-                </Container>
-            </>
-        </ThemeProvider>
+                                        <MenuArrow down />
+                                    </div>
+                                    <MenuGroup>
+                                        <Link to="/">API Docs</Link>
+                                        <OutboundLink href="https://tutorial.connctd.io">Tutorials</OutboundLink>
+                                    </MenuGroup>
+                                </NavGroup>
+                            </div>
+                        </Navbar>
+                    </FixedNav>
+                    <Container>
+                        <Sidebar links={allDocs} />
+                        <Article
+                            title={frontmatter.title}
+                            githubUrl={githubUrl}
+                        >
+                            {file.childMdx ? (
+                                <MDXRenderer scope={undefined} components={undefined}>
+                                    {file.childMdx.body}
+                                </MDXRenderer>
+                            ) : (
+                                renderAst(file.childMarkdownRemark.htmlAst)
+                            )}
+                        </Article>
+                    </Container>
+                </>
+            </ThemeProvider>
         </>
     )
 }
