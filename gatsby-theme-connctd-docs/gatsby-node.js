@@ -86,6 +86,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             context: {
                 id: node.id,
                 allDocs,
+                githubUrl: `https://github.com/connctd/docs/edit/master/docs/content/${node.relativePath}`,
             },
         })
     })
