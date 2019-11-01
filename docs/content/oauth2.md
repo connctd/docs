@@ -20,11 +20,11 @@ for request details.
 > POST https://api.connctd.io/oauth2/token<br>
 > *Headers:*<br>
 > &nbsp;Content-Type:application/x-www-form-urlencoded<br>
-> &nbsp;Authorization:Basic base64_encode(YOUR_CLIENT_ID_id:YOUR_CLIENT_SECRET)<br>
+> &nbsp;Authorization:Basic base64_encode({YOUR_CLIENT_ID}:{YOUR_CLIENT_SECRET})<br>
 > *Body:* see below<br>
 
 ```bash
-grant_type=client_credentials&scope=connctd.connector+connctd.units.admin+connctd.things.read+connctd.units.read+connctd.things.action
+grant_type=client_credentials&scope=connctd.connector%20connctd.units.admin%20connctd.things.read%20connctd.units.read%20connctd.things.action
 ```
 
 > **Response**<br>
