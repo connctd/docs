@@ -54,7 +54,7 @@ Available scopes for Things:
           "type": "<data type of value (NUMBER,STRING,BOOLEAN)>",
           "propertyType": "<string defining meaning of property like e.g. HUMIDITY>",
           "affectedBy": [
-            "href":"<url to action modifying this property>"
+            { "href":"<url to action modifying this property>" }
           ]
         }
       ],
