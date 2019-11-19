@@ -54,7 +54,7 @@ same as
 ### Example 2: Query things with certain properties
 ```graphql
 query{
-	things(thingConstraint: {name: "TutorialDummyOven"}, thingComponentConstraint: {name: "Door"}){
+	things(thingConstraint: {name: "ExampleOven"}, thingComponentConstraint: {name: "Door"}){
 		name
 	}
 }
@@ -63,7 +63,7 @@ query{
 same as
 
 ```json
-{"query":"query{things(thingConstraint: {name:\"TutorialDummyOven\"}, thingComponentConstraint: {name: \"Door\"}){name}}"}
+{"query":"query{things(thingConstraint: {name:\"ExampleOven\"}, thingComponentConstraint: {name: \"Door\"}){name}}"}
 ```
 
 ### Example 3: Query units
@@ -78,7 +78,7 @@ query {
 ### Example 4: Query units with certain properties
 ```graphql
 query{
-	units(unitConstraint: {name:"DummyKitchen", type:"room"}) {
+	units(unitConstraint: {name:"ExampleKitchen", type:"room"}) {
 		name
 	}
 }
@@ -100,15 +100,15 @@ All queries have to be sent against the following endpoint:
 ```graphql
 mutation{
 	createThing(thing: {
-			name: "My Dummy Thing",
+			name: "My Example Thing",
 			manufacturer: "connctd",
 			displayType: "core.SIRENE",
-			mainComponentId: "sirene",
+			mainComponentId: "siren",
 			status: AVAILABLE,
 			components: [{
-				id: "sirene",
-				name: "Sirene",
-				componentType: "core.SIRENE",
+				id: "siren",
+				name: "Siren",
+				componentType: "core.SIREN",
 				capabilities: ["core.SWITCH"],
 				properties: [{
 					id: "on",
@@ -135,7 +135,7 @@ mutation{
 ### Example 2: Create a unit and return its id
 ```graphql
 mutation{
-	createUnit(unit: {name: "DummyUnit", type: "GROUP"}) {
+	createUnit(unit: {name: "ExampleUnit", type: "GROUP"}) {
 		id
 	}
 }
