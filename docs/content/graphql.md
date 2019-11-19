@@ -102,7 +102,7 @@ mutation{
 	createThing(thing: {
 			name: "My Example Thing",
 			manufacturer: "connctd",
-			displayType: "core.SIRENE",
+			displayType: "core.SIREN",
 			mainComponentId: "siren",
 			status: AVAILABLE,
 			components: [{
