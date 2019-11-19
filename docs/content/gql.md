@@ -26,26 +26,62 @@ All queries have to be sent against the following endpoint:
 > &nbsp;Content-Type:application/json<br>
 > &nbsp;Authorization:YOUR TOKEN<br>
 > &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
-> *Body:* see examples below<br>
+> *Body:* {"query":"a valid gql query see examples below"}<br>
+
+<aside class="notice">
+  Please note: the following queries are structured to improve readability. You can use these queries as show in case you are using a proper gql editor (e.g. integrated in postman). If you send it as a rough json object it needs to be condensed into one single line and put into the "envelope" object like shown above.
+</aside>
 
 ### Example 1: Query things and components
+```graphql
+query {
+	things {
+		name,
+		components {
+			id,
+			name
+		}
+	}
+}
+```
+
+same as
+
 ```json
-{"query":"query{things{name,components{id,name}}}"}
+{"query":"query {things {name,components{id,name}}}"}
 ```
 
 ### Example 2: Query things with certain properties
+```graphql
+query{
+	things(thingConstraint: {name: "TutorialDummyOven"}, thingComponentConstraint: {name: "Door"}){
+		name
+	}
+}
+```
+
+same as
+
 ```json
 {"query":"query{things(thingConstraint: {name:\"TutorialDummyOven\"}, thingComponentConstraint: {name: \"Door\"}){name}}"}
 ```
 
 ### Example 3: Query units
-```json
-{"query":"query{units{name}}"}
+```graphql
+query {
+	units {
+		name
+	}
+}
 ```
 
 ### Example 4: Query units with certain properties
-```json
-{"query":"query{units(unitConstraint: {name:\"DummyKitchen\", type:\"room\"}){name}}"}
+```graphql
+query{
+	units(unitConstraint: {name:"DummyKitchen", type:"room"}) {
+		name
+	}
+}
 ```
 
 ## Mutation
@@ -61,13 +97,48 @@ All queries have to be sent against the following endpoint:
 > *Body:* see examples below<br>
 
 ### Example 1: Create thing and return its id
-```json
-{"query": "mutation{createThing(thing: {name: \"My Dummy Thing\", manufacturer: \"connctd\", displayType: \"core.SIRENE\", mainComponentId: \"sirene\", status: AVAILABLE, components: [{ id: \"sirene\", name: \"Sirene\", componentType: \"core.SIRENE\", capabilities: [\"core.SWITCH\"], properties: [{ id: \"on\", name: \"on\", value: \"false\", unit: \"\", type: BOOLEAN, propertyType: \"core.ONOFF\" }], actions: [{ id: \"setOn\", name: \"setOn\", parameters: [{ name: \"on\", type: BOOLEAN }] }] }] }) { id } }"}
+```graphql
+mutation{
+	createThing(thing: {
+			name: "My Dummy Thing",
+			manufacturer: "connctd",
+			displayType: "core.SIRENE",
+			mainComponentId: "sirene",
+			status: AVAILABLE,
+			components: [{
+				id: "sirene",
+				name: "Sirene",
+				componentType: "core.SIRENE",
+				capabilities: ["core.SWITCH"],
+				properties: [{
+					id: "on",
+					name: "on",
+					value: "false",
+					unit: "",
+					type: BOOLEAN,
+					propertyType: "core.ONOFF"
+				}],
+				actions: [{
+					id: "setOn", name: "setOn", parameters: [{
+						name: "on",
+						type: BOOLEAN
+					}]
+				}]
+			}]
+		}
+	) {
+		id
+	}
+}
 ```
 
 ### Example 2: Create a unit and return its id
-```json
-{"query": "mutation{createUnit(unit: {name: \"Katzenland\", type: \"GROUP\"}) { id }}"}
+```graphql
+mutation{
+	createUnit(unit: {name: "DummyUnit", type: "GROUP"}) {
+		id
+	}
+}
 ```
 
 
