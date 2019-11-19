@@ -60,7 +60,8 @@ Available scopes for Things:
       ],
       "actions": [
         {
-          "name": "<component unique name of action>",
+          "id": "<component unique id of action>",
+          "name": "<name of action>",
           "parameters": [
             {
               "name": "<parameter name>",
