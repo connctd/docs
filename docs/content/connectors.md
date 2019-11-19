@@ -1,6 +1,6 @@
 ---
 title: Connectors
-order: 8
+order: 7
 ---
 
 There are two ways on how things can be added to an external subjects thing list: You can either [register](#register-an-app) and write your own app and use the [create thing](#create-thing) endpoint and/or you can make use of so called connectors.

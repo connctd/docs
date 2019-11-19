@@ -19,8 +19,15 @@ This repository is split into two packages to separate the content from the styl
 Every doc page is a markdown document within `docs/content`. You can edit these markdown files
 or create a new one.
 
+Perform once:
+```sh
+yarn install
+```
+
 To see the resulting site:
 
 ```sh
 yarn workspace docs start
 ```
+
+In case yarn is complaining about your installed node version checkout https://www.awesomeblog.co/2018/10/managing-your-node-js-versions-on-mac/
