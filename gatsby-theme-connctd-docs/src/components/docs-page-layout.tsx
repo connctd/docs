@@ -1,9 +1,9 @@
-import React from "react"
+import React, { memo, useReducer } from "react"
 import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "@emotion/styled"
 import {
-    Navbar, Logo, NavGroup, MenuGroup, Anchor, MenuArrow, defaultTheme, GlobalStyle,
+    Navbar, Logo, NavGroup, MenuGroup, MenuArrow, defaultTheme, GlobalStyle,
 } from "@connctd/quartz"
 import rehypeReact from "rehype-react"
 import { Global } from "@emotion/core"
@@ -12,6 +12,7 @@ import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { Sidebar } from "./sidebar"
 import Article from "./docs-article"
 import SEO from "./seo"
+import Profile from "./profile"
 
 
 const docsTheme = defaultTheme
@@ -58,11 +59,74 @@ const FixedNav = styled.div`
     z-index: 100;
 `
 
+export interface Store {
+    profile: {
+        email?: string
+        image?: string
+        fetched: boolean
+        pending: boolean
+        isLoggedIn: boolean
+    }
+}
+
+const initialState: Store = {
+    profile: {
+        email: undefined,
+        image: undefined,
+        fetched: false,
+        pending: false,
+        isLoggedIn: false,
+    },
+}
+
+export const actions = {
+    FETCH_PROFILE: "FETCH_PROFILE",
+    SET_PROFILE: "SET_PROFILE",
+    NOT_LOGGED_IN: "NOT_LOGGED_IN",
+}
+
+function reducer(state, action) {
+    switch (action.type) {
+        case actions.FETCH_PROFILE:
+            return {
+                profile: {
+                    ...state.profile,
+                    fetched: false,
+                    pending: true,
+                },
+            }
+        case actions.SET_PROFILE:
+            return {
+                profile: {
+                    fetched: true,
+                    email: action.payload.email,
+                    image: action.payload.image,
+                    isLoggedIn: true,
+                    pending: false,
+                },
+            }
+        case actions.NOT_LOGGED_IN:
+            return {
+                profile: {
+                    fetched: true,
+                    isLoggedIn: false,
+                    email: undefined,
+                    image: undefined,
+                    pending: false,
+                },
+            }
+        default:
+            throw new Error(`Could not dispatch ${JSON.stringify(action)}. That action is not defined.`)
+    }
+}
+
+
 export default function PageTemplate({
     data: { file, site: { siteMetadata } },
     pageContext: { allDocs, githubUrl },
 }) {
     const { frontmatter } = file.childMarkdownRemark || file.childMdx
+    const [state, dispatch] = useReducer(reducer, initialState)
     return (
         <>
             <SEO
@@ -98,6 +162,7 @@ export default function PageTemplate({
                                         <OutboundLink href="https://tutorial.connctd.io">Tutorials</OutboundLink>
                                     </MenuGroup>
                                 </NavGroup>
+                                <Profile state={state} dispatch={dispatch} />
                             </div>
                         </Navbar>
                     </FixedNav>
