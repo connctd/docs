@@ -148,7 +148,7 @@ export default function PageTemplate({
                             </div>
                             <div className="Items">
                                 <NavGroup>
-                                    <OutboundLink href="https://devcenter.connctd.io/">Devcenter</OutboundLink>
+                                    <OutboundLink href="https://devcenter.connctd.io/?utm_source=docs">Devcenter</OutboundLink>
                                 </NavGroup>
                             </div>
                             <div className="Staples">
@@ -159,7 +159,7 @@ export default function PageTemplate({
                                     </div>
                                     <MenuGroup>
                                         <Link to="/">API Docs</Link>
-                                        <OutboundLink href="https://tutorial.connctd.io">Tutorials</OutboundLink>
+                                        <OutboundLink href="https://tutorial.connctd.io/?utm_source=docs">Tutorials</OutboundLink>
                                     </MenuGroup>
                                 </NavGroup>
                                 <Profile state={state} dispatch={dispatch} />

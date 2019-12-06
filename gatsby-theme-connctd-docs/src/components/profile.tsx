@@ -77,8 +77,8 @@ const Profile = memo<{
                 <MenuArrow down />
             </div>
             <MenuGroup>
-                <OutboundLink href="https://devcenter.connctd.io/account">Account</OutboundLink>
-                <OutboundLink href="https://devcenter.connctd.io/logout">Log Out</OutboundLink>
+                <OutboundLink href="https://devcenter.connctd.io/account?utm_source=docs">Account</OutboundLink>
+                <OutboundLink href="https://devcenter.connctd.io/logout?utm_source=docs">Log Out</OutboundLink>
             </MenuGroup>
         </NavGroup>
     )
