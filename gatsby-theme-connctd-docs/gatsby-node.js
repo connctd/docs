@@ -72,10 +72,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             ? dlv(getPageFromEdge(a.node), "frontmatter.order") : 2
         const orderB = Number.isInteger(dlv(getPageFromEdge(b.node), "frontmatter.order"))
             ? dlv(getPageFromEdge(b.node), "frontmatter.order") : 2
-        return orderA > orderB
+        return orderA - orderB
     })
-
-    console.log(allDocs)
 
     posts.forEach(({ node }, index) => {
         const { fields } = getPageFromEdge(node)
