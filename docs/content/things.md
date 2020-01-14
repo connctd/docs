@@ -1,5 +1,6 @@
 ---
 title: Things
+order: 5
 ---
 
 Things in our API are abstract representations of specific IoT related devices. They can be created, deleted

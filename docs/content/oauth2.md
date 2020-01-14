@@ -1,5 +1,6 @@
 ---
 title: OAuth 2.0
+order: 2
 ---
 
 The connctd platform acts as a oauth2 provider implementing all flows described in

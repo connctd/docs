@@ -1,6 +1,6 @@
 ---
 title: GraphQL API
-order: 8
+order: 9
 ---
 
 We are offering a Graph QL which makes it easier to perform tasks like creating/searching/resolving things.

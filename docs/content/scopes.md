@@ -1,6 +1,6 @@
 ---
 title: Scopes
-order: 9
+order: 10
 ---
 
 Scopes are attached to access tokens and specify the actions that can be performed on resources.
@@ -11,5 +11,6 @@ connctd.units.read | query units
 connctd.units.admin | create, modify and remove units
 connctd.things.read | query things
 connctd.things.action | create actions requests
+connctd.subjects.read | query external subjects created within an app
 connctd.connector | create, read, modify and remove things
 connctd.core | Can't be requested by oauth 2 apps. Automatically assigned to user token retrieved via /api/v1/auth/login.

@@ -1,5 +1,6 @@
 ---
 title: Apps
+order: 4
 ---
 
 Whenever you would like to build your own application which makes use of things, units or connectors you first need

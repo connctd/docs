@@ -1,5 +1,6 @@
 ---
 title: Authentication
+order: 3
 ---
 
 To authenticate against our API you need verify your credentials. In return you receive a token identifying you as
