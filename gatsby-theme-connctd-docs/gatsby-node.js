@@ -1,4 +1,5 @@
 const { createFilePath } = require("gatsby-source-filesystem")
+const dlv = require("dlv")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
     // We only want to operate on `Mdx` nodes. If we had content from a
@@ -65,16 +66,19 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const posts = result.data.allFile.edges
     // We'll call `createPage` for each result
 
+    const allDocs = [...posts]
+    allDocs.sort((a, b) => {
+        const orderA = Number.isInteger(dlv(getPageFromEdge(a.node), "frontmatter.order"))
+            ? dlv(getPageFromEdge(a.node), "frontmatter.order") : 2
+        const orderB = Number.isInteger(dlv(getPageFromEdge(b.node), "frontmatter.order"))
+            ? dlv(getPageFromEdge(b.node), "frontmatter.order") : 2
+        return orderA > orderB
+    })
+
+    console.log(allDocs)
+
     posts.forEach(({ node }, index) => {
         const { fields } = getPageFromEdge(node)
-        const allDocs = [...posts]
-        allDocs.sort((a, b) => {
-            const orderA = getPageFromEdge(a.node).frontmatter.order
-                ? getPageFromEdge(a.node).frontmatter.order : 2
-            const orderB = getPageFromEdge(b.node).frontmatter.order
-                ? getPageFromEdge(b.node).frontmatter.order : 2
-            return orderA > orderB
-        })
         createPage({
             // This is the slug we created before
             // (or `node.frontmatter.slug`)

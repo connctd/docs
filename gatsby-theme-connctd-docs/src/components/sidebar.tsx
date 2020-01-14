@@ -87,10 +87,10 @@ export const Sidebar: React.FC<{links: SideBarLink[], }> = ({ links }) => (
                             </h4>
                             {node.headings.length > 0 && (
                                 <>
-                                <ul>
-                                    {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`} key={h.value}><li>{h.value}</li></Link>)}
-                                </ul>
-                                <hr />
+                                    <ul>
+                                        {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`} key={h.value}><li>{h.value}</li></Link>)}
+                                    </ul>
+                                    <hr />
                                 </>
                             )}
                         </div>
