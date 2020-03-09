@@ -3,18 +3,6 @@ title: GraphiQL Explorer
 order: 10
 layout: full-width
 ---
-import GraphiQL from 'graphiql';
-import "graphiql/graphiql.min.css";
-import fetch from 'isomorphic-fetch';
+import Explorer from "../components/Explorer"
 
-export const graphQLFetcher = graphQLParams =>
-        fetch('https://api.connctd.io/api/v1/query', {
-          method: 'post',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(graphQLParams),
-        })
-          .then(response => response.json())
-          .catch(() => response.text());
-
-
-<GraphiQL fetcher={graphQLFetcher} />
+<Explorer />
