@@ -160,6 +160,7 @@ export default function PageTemplate({
                                     </div>
                                     <MenuGroup>
                                         <Link to="/">API Docs</Link>
+                                        <Link to="/explorer">GraphQL Explorer</Link>
                                         <OutboundLink href="https://tutorial.connctd.io/?utm_source=docs">Tutorials</OutboundLink>
                                     </MenuGroup>
                                 </NavGroup>

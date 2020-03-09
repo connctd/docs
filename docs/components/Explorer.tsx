@@ -14,15 +14,16 @@ import "graphiql/graphiql.css"
 
 const DEFAULT_QUERY = `# shift-option/alt-click on a query below to jump to it in the explorer
 # option/alt-click on a field in the explorer to select all subfields
-query myApps {
-  apps {
-    id
-    name
-    scopes
-  }
+query myThings {
+    things {
+      id
+      name
+      manufacturer
+      status
+    }
 }`
 
-const fetchToken = (appID, secret, scopes) => {
+const fetchToken = (appID, secret, scope) => {
     const bearerBase64 = window.btoa(unescape(encodeURIComponent(`${appID}:${secret}`)))
     return fetch("https://api.connctd.io/oauth2/token", {
         method: "POST",
@@ -31,8 +32,13 @@ const fetchToken = (appID, secret, scopes) => {
             Accept: "application/json",
             Authorization: `Basic ${bearerBase64}`,
         },
-        body: `grant_type=client_credentials&scopes=${scopes.replace(/\n/g, "%20")}`,
+        body: `grant_type=client_credentials&scope=${scope.replace(/\n/g, "%20")}`,
     })
+}
+
+
+interface FetchRequest extends RequestInit {
+    headers: Record<string, string>
 }
 
 type State = {
@@ -49,7 +55,7 @@ export interface AuthConfig {
     appSecret?: string
     token?: string
     subjectID: string
-    scopes: string
+    scope: string
 }
 
 const Container = styled.div`
@@ -68,23 +74,35 @@ class App extends Component<{}, State> {
             appSecret: "",
             token: "",
             subjectID: "default",
-            scopes: "connctd.connector\nconnctd.things.read\nconnctd.units.read\nconnctd.things.action\nconnctd.units.admin",
+            scope: "connctd.connector\nconnctd.things.read\nconnctd.units.read\nconnctd.things.action\nconnctd.units.admin",
         },
         bearerToken: "",
     };
 
-    fetcher = (params: Record<string, any>) => fetch("https://api.connctd.io/api/v1/query", {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json",
-            "X-External-Subject-Id": this.state.authConfig.subjectID,
-            Authorization: this.state.bearerToken ? `Bearer ${this.state.bearerToken}` : undefined,
-        },
-        credentials: this.state.bearerToken ? undefined : "include",
-        body: JSON.stringify(params),
-    })
-        .then(response => response.json())
-        .catch(response => response.text())
+    componentDidMount() {
+        // this.buildSchema()
+    }
+
+    fetcher = (params: Record<string, any>) => {
+        const { bearerToken, authConfig } = this.state
+
+        const requestInit: FetchRequest = {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+                "X-External-Subject-Id": authConfig.subjectID,
+            },
+            credentials: bearerToken ? undefined : "include",
+            body: JSON.stringify(params),
+        }
+
+        if (bearerToken) {
+            requestInit.headers.Authorization = `Bearer ${bearerToken}`
+        }
+        return fetch("https://api.connctd.io/api/v1/query", requestInit)
+            .then(response => response.json())
+            .catch(response => response.text())
+    }
 
     buildSchema = () => {
         this.fetcher({
@@ -110,7 +128,7 @@ class App extends Component<{}, State> {
         } else {
             try {
                 const tokenBody = await fetchToken(authConfig.appID,
-                    authConfig.appSecret, authConfig.scopes)
+                    authConfig.appSecret, authConfig.scope)
                 const tokenJson = await tokenBody.json()
 
                 if (tokenJson.error) {
@@ -124,7 +142,6 @@ class App extends Component<{}, State> {
                 }
             } catch (e) {
                 alert(`An error occured when trying to fetch your token:\n ${e}`)
-                throw e
             }
         }
     }

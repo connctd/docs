@@ -22,7 +22,7 @@ function AuthModal({
     const [appID, setAppID] = useState(defaults.appID)
     const [appSecret, setSecret] = useState(defaults.appSecret)
     const [token, setToken] = useState(defaults.token)
-    const [scopes, setScopes] = useState(defaults.scopes)
+    const [scope, setScopes] = useState(defaults.scope)
     const [subjectID, setSubjectID] = useState(defaults.subjectID)
 
     return (
@@ -56,7 +56,7 @@ function AuthModal({
                                 <Input value={appSecret} label="Client Secret" onChange={e => setSecret(e.target.value)} />
                                 <h2>App Scopes (1 per line)</h2>
                                 <TextArea
-                                    value={scopes}
+                                    value={scope}
                                     onChange={e => setScopes(e.target.value)}
                                 />
                                 <br />
@@ -80,7 +80,7 @@ function AuthModal({
                                         appID,
                                         appSecret,
                                         token,
-                                        scopes,
+                                        scope,
                                         subjectID,
                                     })
                                 }}
