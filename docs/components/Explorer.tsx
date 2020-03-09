@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react"
 import GraphiQL from "graphiql"
 import GraphiQLExplorer from "graphiql-explorer"
@@ -23,12 +24,12 @@ function fetcher(params: Record<string, any>): Record<string, any> {
 const DEFAULT_QUERY = `# shift-option/alt-click on a query below to jump to it in the explorer
 # option/alt-click on a field in the explorer to select all subfields
 query myApps {
-    apps {
-      id
-      name
-      scopes
-    }
-  }`
+  apps {
+    id
+    name
+    scopes
+  }
+}`
 
 type State = {
     schema?: GraphQLSchema
