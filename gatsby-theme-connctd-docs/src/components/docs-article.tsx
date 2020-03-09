@@ -2,13 +2,24 @@ import React from "react"
 import styled from "@emotion/styled"
 import { QuartzTheme } from "@connctd/quartz"
 
-const Content = styled.article<{theme?: QuartzTheme, }>`
+const Content = styled.article<{ theme?: QuartzTheme, layout: string, }>`
     grid-area: content;
     margin: auto;
-    max-width: 800px;
+    height: 100%;
+    max-width: ${({ layout }) => {
+        if (layout === "full-width") {
+            return "100%"
+        }
+        return "800px"
+    }};
     justify-self: start;
     height: 100%;
-    padding: 10px 50px;
+    padding: ${({ layout }) => {
+        if (layout === "full-width") {
+            return "0"
+        }
+        return "10px 50px"
+    }};
     line-height: 1.45;
     color: #21243d;
 
@@ -94,12 +105,14 @@ interface ArticleProps {
     title: string
     children: React.ReactNode
     githubUrl: string
+    layout: string
 }
 
 const Container = styled.div`
     width: calc(100% - 250px);
     margin-left: 250px;
     margin-top: 50px;
+    height: 100%;
 `
 
 const TitleBlock = styled.header`
@@ -123,10 +136,12 @@ const ArticleTitle = ({ text, editUrl }) => (
     </TitleBlock>
 )
 
-export const Article: React.FC<ArticleProps> = ({ title, children, githubUrl }) => (
+export const Article: React.FC<ArticleProps> = ({
+    title, children, githubUrl, layout,
+}) => (
     <Container>
-        <Content>
-            <ArticleTitle text={title} editUrl={githubUrl} />
+        <Content layout={layout}>
+            {title !== "GraphiQL Explorer" && <ArticleTitle text={title} editUrl={githubUrl} />}
             {children}
         </Content>
     </Container>

@@ -36,6 +36,7 @@ export const pageQuery = graphql`
       childMdx {
         frontmatter {
           title
+          layout
         }
         body
       }
@@ -171,6 +172,7 @@ export default function PageTemplate({
                         <Article
                             title={frontmatter.title}
                             githubUrl={githubUrl}
+                            layout={frontmatter.layout}
                         >
                             {file.childMdx ? (
                                 <MDXRenderer scope={undefined} components={undefined}>
