@@ -12,6 +12,7 @@ const ProfileImage = styled.img`
     width: 33px;
     vertical-align: middle;
     margin-left: 10px;
+    display: inline;
 `
 const fetchProfile = (dispatch) => {
     dispatch({ type: actions.FETCH_PROFILE })

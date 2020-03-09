@@ -36,6 +36,7 @@ export const pageQuery = graphql`
       childMdx {
         frontmatter {
           title
+          layout
         }
         body
       }
@@ -159,6 +160,7 @@ export default function PageTemplate({
                                     </div>
                                     <MenuGroup>
                                         <Link to="/">API Docs</Link>
+                                        <Link to="/explorer">GraphQL Explorer</Link>
                                         <OutboundLink href="https://tutorial.connctd.io/?utm_source=docs">Tutorials</OutboundLink>
                                     </MenuGroup>
                                 </NavGroup>
@@ -171,6 +173,7 @@ export default function PageTemplate({
                         <Article
                             title={frontmatter.title}
                             githubUrl={githubUrl}
+                            layout={frontmatter.layout}
                         >
                             {file.childMdx ? (
                                 <MDXRenderer scope={undefined} components={undefined}>

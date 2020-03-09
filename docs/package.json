@@ -11,9 +11,13 @@
     "watch": "rm -rf ./.cache && nodemon --watch ../gatsby-theme-connctd-docs -e js,ts,tsx,json --exec yarn start"
   },
   "dependencies": {
+    "@chakra-ui/core": "^0.6.1",
     "gatsby": "^2.15.18",
     "gatsby-plugin-typescript": "^2.1.8",
     "gatsby-theme-connctd-docs": "^1.0.0",
+    "graphiql": "^0.17.5",
+    "graphiql-explorer": "^0.5.1",
+    "isomorphic-fetch": "^2.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
