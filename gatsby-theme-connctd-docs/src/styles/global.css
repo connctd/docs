@@ -13,3 +13,7 @@ body, html {
 #gatsby-focus-wrapper {
     height: 100%;
 }
+
+textarea {
+    box-sizing: border-box !important;
+}
