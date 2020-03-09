@@ -16,12 +16,14 @@ import {
 import { ThemeProvider } from "emotion-theming"
 import { Link } from "gatsby"
 
-function AuthModal({ isOpen, toggle, setCredentials }) {
-    const [appID, setAppID] = useState("")
-    const [appSecret, setSecret] = useState("")
-    const [token, setToken] = useState("")
-    const [scopes, setScopes] = useState("connctd.connector\nconnctd.things.read\nconnctd.units.read\nconnctd.things.action\nconnctd.units.admin")
-    const [subjectID, setSubjectID] = useState("default")
+function AuthModal({
+    isOpen, toggle, setCredentials, defaults,
+}) {
+    const [appID, setAppID] = useState(defaults.appID)
+    const [appSecret, setSecret] = useState(defaults.appSecret)
+    const [token, setToken] = useState(defaults.token)
+    const [scopes, setScopes] = useState(defaults.scopes)
+    const [subjectID, setSubjectID] = useState(defaults.subjectID)
 
     return (
         <ThemeProvider theme={theme}>
@@ -45,13 +47,13 @@ function AuthModal({ isOpen, toggle, setCredentials }) {
                             </p>
                             <br />
                             <p>
-                                You can either provide the App ID and Secret and we will
+                                You can either provide the Client ID and Secret and we will
                                  generate a Token for you or provide your own token.
                             </p>
 
                             <div className="textAreaFix" style={{ marginTop: 20 }}>
-                                <Input label="App ID" onChange={e => setAppID(e.target.value)} />
-                                <Input label="App Secret" onChange={e => setSecret(e.target.value)} />
+                                <Input value={appID} label="Client ID" onChange={e => setAppID(e.target.value)} />
+                                <Input value={appSecret} label="Client Secret" onChange={e => setSecret(e.target.value)} />
                                 <h2>App Scopes (1 per line)</h2>
                                 <TextArea
                                     value={scopes}
@@ -60,7 +62,7 @@ function AuthModal({ isOpen, toggle, setCredentials }) {
                                 <br />
                                 <h2>Or a valid Token you have generated</h2>
                                 <br />
-                                <Input label="Token" onChange={e => setToken(e.target.value)} />
+                                <Input value={token} label="Token" onChange={e => setToken(e.target.value)} />
                                 <br />
                                 <Input label="External Subject ID" value={subjectID} onChange={e => setSubjectID(e.target.value)} />
                             </div>
@@ -78,6 +80,8 @@ function AuthModal({ isOpen, toggle, setCredentials }) {
                                         appID,
                                         appSecret,
                                         token,
+                                        scopes,
+                                        subjectID,
                                     })
                                 }}
                                 text="Save"

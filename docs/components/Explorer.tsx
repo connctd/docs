@@ -1,8 +1,7 @@
-/* eslint-disable */
+
 import React, { Component } from "react"
 import GraphiQL from "graphiql"
 import GraphiQLExplorer from "graphiql-explorer"
-import { Input } from "@connctd/quartz"
 import styled from "@emotion/styled"
 import {
     buildClientSchema, getIntrospectionQuery, parse, GraphQLSchema,
@@ -23,6 +22,19 @@ query myApps {
   }
 }`
 
+const fetchToken = (appID, secret, scopes) => {
+    const bearerBase64 = window.btoa(unescape(encodeURIComponent(`${appID}:${secret}`)))
+    return fetch("https://api.connctd.io/oauth2/token", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            Accept: "application/json",
+            Authorization: `Basic ${bearerBase64}`,
+        },
+        body: `grant_type=client_credentials&scopes=${scopes.replace(/\n/g, "%20")}`,
+    })
+}
+
 type State = {
     schema?: GraphQLSchema
     query: string
@@ -37,6 +49,7 @@ export interface AuthConfig {
     appSecret?: string
     token?: string
     subjectID: string
+    scopes: string
 }
 
 const Container = styled.div`
@@ -54,25 +67,24 @@ class App extends Component<{}, State> {
             appID: "",
             appSecret: "",
             token: "",
-            subjectID: "default"
+            subjectID: "default",
+            scopes: "connctd.connector\nconnctd.things.read\nconnctd.units.read\nconnctd.things.action\nconnctd.units.admin",
         },
-        bearerToken: ""
+        bearerToken: "",
     };
 
-    fetcher = (params: Record<string, any>) => {
-        return fetch("https://api.connctd.io/api/v1/query", {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-                "X-External-Subject-ID": this.state.authConfig.subjectID,
-                Authorization: this.state.bearerToken ? `Bearer ${this.state.bearerToken}` : undefined
-            },
-            credentials: this.state.bearerToken ? undefined : "include",
-            body: JSON.stringify(params),
-        })
-            .then(response => response.json())
-            .catch(response => response.text())
-    }
+    fetcher = (params: Record<string, any>) => fetch("https://api.connctd.io/api/v1/query", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json",
+            "X-External-Subject-Id": this.state.authConfig.subjectID,
+            Authorization: this.state.bearerToken ? `Bearer ${this.state.bearerToken}` : undefined,
+        },
+        credentials: this.state.bearerToken ? undefined : "include",
+        body: JSON.stringify(params),
+    })
+        .then(response => response.json())
+        .catch(response => response.text())
 
     buildSchema = () => {
         this.fetcher({
@@ -88,8 +100,33 @@ class App extends Component<{}, State> {
         })
     }
 
-    handleSetCredentials = (authConfig: AuthConfig) => {
-        this.setState({authConfig, authModalOpen: false})
+    handleSetCredentials = async (authConfig: AuthConfig) => {
+        this.setState({ authConfig, authModalOpen: false })
+
+        if (authConfig.token) {
+            this.setState({ bearerToken: authConfig.token })
+
+            this.buildSchema()
+        } else {
+            try {
+                const tokenBody = await fetchToken(authConfig.appID,
+                    authConfig.appSecret, authConfig.scopes)
+                const tokenJson = await tokenBody.json()
+
+                if (tokenJson.error) {
+                    throw tokenJson.error_description
+                }
+
+                this.setState({ bearerToken: tokenJson.access_token })
+
+                if (tokenJson.access_token) {
+                    this.buildSchema()
+                }
+            } catch (e) {
+                alert(`An error occured when trying to fetch your token:\n ${e}`)
+                throw e
+            }
+        }
     }
 
     _handleInspectOperation = (
@@ -162,7 +199,7 @@ class App extends Component<{}, State> {
         const { query, schema, authModalOpen } = this.state
         return (
             <Container>
-                <AuthModal isOpen={authModalOpen} toggle={this._handleToggleAuth} setCredentials={this.handleSetCredentials}/>
+                <AuthModal isOpen={authModalOpen} toggle={this._handleToggleAuth} setCredentials={this.handleSetCredentials} defaults={this.state.authConfig} />
                 <div className="graphiql-container">
                     <GraphiQLExplorer
                         schema={schema}
