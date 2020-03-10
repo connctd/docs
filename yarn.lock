@@ -847,10 +847,10 @@
     eslint-plugin-jsx-a11y "^6.2.3"
     eslint-plugin-react "^7.14.2"
 
-"@connctd/quartz@^1.0.6-3":
-  version "1.0.6-3"
-  resolved "https://registry.yarnpkg.com/@connctd/quartz/-/quartz-1.0.6-3.tgz#bba1e65f1474f00016336803ad40fbb55320f376"
-  integrity sha512-sz7AzZ+Mh5QCBTLXhxv9JoX2BWN6iMtgccFAP18fiFFq2H6hK708yCk4fQjB4l2dTrqQoihfnUP7JGPihVI2sg==
+"@connctd/quartz@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@connctd/quartz/-/quartz-1.1.0.tgz#17c307df1a4e35409de08c4790486a6e767efe9e"
+  integrity sha512-Z1nyYnLnP5KW9dUM82VZLR2bFnlPkeYWfMYV8x9e072+zwmcTLYFuOHPNMed6eAaYM3OEJ5s8RnOw8jKdv3oOw==
   dependencies:
     "@emotion/core" "^10.0.17"
     "@emotion/styled" "^10.0.17"
