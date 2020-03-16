@@ -99,7 +99,7 @@ class App extends Component<{}, State> {
         if (bearerToken) {
             requestInit.headers.Authorization = `Bearer ${bearerToken}`
         }
-        return fetch("https://api.connctd.io/api/v1/query", requestInit)
+        return fetch("https://api.connctd.io/api/betav1/query", requestInit)
             .then(response => response.json())
             .catch(response => response.text())
     }
