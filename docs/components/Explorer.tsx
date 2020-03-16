@@ -91,7 +91,6 @@ class App extends Component<{}, State> {
             headers: {
                 "Content-Type": "application/json",
                 "X-External-Subject-Id": authConfig.subjectID,
-                "X-Channel": "canary",
             },
             credentials: bearerToken ? undefined : "include",
             body: JSON.stringify(params),
