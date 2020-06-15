@@ -84,6 +84,36 @@ query{
 }
 ```
 
+### Example 5: Query historic thing values with criteria
+```graphql
+query {
+    things(thingConstraint: {id: "1e999269-a90c-41a3-b388-0eef1d810317"}) {
+        id
+        name
+        components {
+            name
+            properties {
+                name
+                history(from: "2020-04-01T22:00:00Z", to: "2020-04-30T22:00:00Z", first: 5, after: "eyJ0aW1lIjoiMjAyMC0wNC0xM1QxNToyOTo1MC44OTA0MTVaIn0=") {
+                    totalCount
+                    pageInfo {
+                        hasNextPage
+                        endCursor
+                    }
+                    edges {
+                        node {
+                            timestamp
+                            value
+                        }
+                        cursor
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
 ## Mutation
 
 All queries have to be sent against the following endpoint:
