@@ -172,3 +172,152 @@ mutation{
 ```
 
 
+### Connectors
+
+```graphql
+query {
+    connectorPublications {
+        id
+        name
+        logoUrl
+        homeUrl
+        description
+        requirements
+        tags
+        active
+        public
+        configurationParameters {
+            id
+            name
+            required
+            description
+            valueType
+            displayType
+            validationExpression
+        }
+        customerConfigurationParameters {
+            id
+            name
+            required
+            description
+            valueType
+            displayType
+            validationExpression
+        }
+    }
+}
+```
+
+active: A connector can be deactivated to indicate a maintanance process is going on or the technology is no longer supported. By default a connector is active. Deactivating a connector means no further messages get routed from or to the externally hosted connector service. Status of all related things will switch from AVAILABLE to UNAVAILABLE. Also no further installations of that connector can be done as long as it is deactivated.
+
+public: If set to true the connector is visible in connector store.
+
+```graphql
+mutation {
+    publishConnector(connector: {
+        name: "Pandelis super connector"
+        logoUrl: "https://anyurl.com",
+        homeUrl: "https://anyurl.com",
+        description: "Hello world",
+        requirements: "Do this and that",
+        public: true,
+        tags: ["tagOne","tagTwo"],
+        configurationParameters: [
+            {
+                id: "clientid",
+                name: "Client ID",
+                required: true,
+                description: "Bla",
+                valueType: STRING,
+                displayType: PLAIN,
+                validationExpression: ""
+            }
+        ],
+        customerConfigurationParameters: [
+            {
+                id: "name",
+                name: "Your name",
+                required: false,
+                description: "dummy",
+                valueType: STRING,
+                displayType: PASSWORD,
+                validationExpression: ""
+            }
+        ],
+        addConfigurationCallbackUrl: "https://anyurl.com",
+        removeConfigurationCallbackUrl: "https://anyurl.com",
+        updateConfigurationCallbackUrl: "https://anyurl.com",
+        addInstanceCallbackUrl: "https://anyurl.com",
+        removeInstanceCallbackUrl: "https://anyurl.com",
+        updateInstanceCallbackUrl: "https://anyurl.com",
+        performActionCallbackUrl: "https://anyurl.com",
+        cancelActionCallbackUrl: "https://anyurl.com"
+    }) {
+        id
+        name
+        logoUrl
+        homeUrl
+        description
+        requirements
+        public
+        active
+        configurationParameters {
+            id
+            name
+            required
+            description
+            valueType
+            validationExpression
+        }
+        customerConfigurationParameters {
+            id
+            name
+            required
+            description
+            valueType
+            validationExpression
+        }
+        addConfigurationCallbackUrl
+        removeConfigurationCallbackUrl
+        updateConfigurationCallbackUrl
+        addInstanceCallbackUrl
+        removeInstanceCallbackUrl
+        updateInstanceCallbackUrl
+        performActionCallbackUrl
+        cancelActionCallbackUrl
+        verificationId
+    }
+}
+```
+
+```graphql
+query {
+    connectorStoreItems {
+        id
+        name
+        logoUrl
+        homeUrl
+        description
+        requirements
+        tags
+        configurationParameters {
+            id
+            name
+            required
+            description
+            valueType
+            displayType
+            validationExpression
+        }
+        customerConfigurationParameters {
+            id
+            name
+            required
+            description
+            valueType
+            displayType
+            validationExpression
+        }
+    }
+}
+```
