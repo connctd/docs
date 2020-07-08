@@ -210,7 +210,7 @@ query {
 
 active: A connector can be deactivated to indicate a maintanance process is going on or the technology is no longer supported. By default a connector is active. Deactivating a connector means no further messages get routed from or to the externally hosted connector service. Status of all related things will switch from AVAILABLE to UNAVAILABLE. Also no further installations of that connector can be done as long as it is deactivated.
 
-public: If set to true the connector is visible in connector store. If set to false its only visible in connector store if the connector belongs to you.
+public: If set to true the connector is visible in connector store. If set to false its only visible in connector store if the connector belongs to you. Even if a connector is not shown in the store it can still be installed if its uuid and configuration is shared.
 
 ```graphql
 mutation {
