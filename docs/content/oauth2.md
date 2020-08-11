@@ -17,6 +17,8 @@ owner.
 Retrieves a token which can be used to manage things, units and connectors. See [rfc6749](https://tools.ietf.org/html/rfc6749#section-4.4)
 for request details.
 
+> Make sure to set your Authorization as "Basic" in this step!
+
 > **Request**<br>
 > POST https://api.connctd.io/oauth2/token<br>
 > *Headers:*<br>

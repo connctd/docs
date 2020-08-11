@@ -42,6 +42,7 @@ interface FetchRequest extends RequestInit {
 }
 
 type State = {
+    firstRequest: boolean
     schema?: GraphQLSchema
     query: string
     authModalOpen: boolean
@@ -65,6 +66,7 @@ const Container = styled.div`
 class App extends Component<{}, State> {
     _graphiql: any;
     state: State = {
+        firstRequest: true,
         schema: null,
         query: DEFAULT_QUERY,
         authModalOpen: true,
@@ -80,11 +82,11 @@ class App extends Component<{}, State> {
     };
 
     componentDidMount() {
-        // this.buildSchema()
+        this.buildSchema()
     }
 
     fetcher = (params: Record<string, any>) => {
-        const { bearerToken, authConfig } = this.state
+        const { bearerToken, authConfig, firstRequest } = this.state
 
         const requestInit: FetchRequest = {
             method: "post",
@@ -98,6 +100,24 @@ class App extends Component<{}, State> {
 
         if (bearerToken) {
             requestInit.headers.Authorization = `Bearer ${bearerToken}`
+        }
+
+        if (firstRequest && !bearerToken) {
+            this.setState({ firstRequest: false })
+
+            return fetch("/api/querykey")
+                .then(response => response.json())
+                .then((json) => {
+                    requestInit.headers.Authorization = `Bearer ${json.key}`
+                    return fetch("https://api.connctd.io/api/v1/query", requestInit)
+                        .then(response => response.json())
+                        .catch(response => response.text())
+                })
+                .catch((err) => {
+                    //eslint-disable-next-line
+                    console.error(err)
+                    return err
+                })
         }
         return fetch("https://api.connctd.io/api/v1/query", requestInit)
             .then(response => response.json())
