@@ -8,16 +8,16 @@ module.exports.default = (req, res) => {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
             Accept: "application/json",
-            Authorization: `Bearer ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
+            Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
         },
     }).then((accessRes) => {
-        console.log({ accessRes })
         res.json({
             status: "ok",
-            key: accessRes.response.data.access_token,
+            key: accessRes.data.access_token,
         })
     }).catch((err) => {
         res.status(500)
+        console.log({ req, err })
         res.json({
             status: "error",
             error: err.message,
