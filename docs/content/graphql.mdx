@@ -2,6 +2,7 @@
 title: GraphQL API
 order: 9
 ---
+import KeyUtilities from "../components/KeyUtilities"
 
 We are offering a Graph QL which makes it easier to perform tasks like creating/searching/resolving things.
 See our [Tutorial](https://tutorial.connctd.io/tutorials/5/pages/1) in case you need a proper introduction in using our GraphQL API.
@@ -15,18 +16,49 @@ We highly recommend using a GraphQL Editor (e.g. integrated in Postman) when pla
     </ul>
 </aside>
 
+## Utilities
+
+The connctd GraphQL endpoint exists behind an authentication layer which can make
+obtaining the schema for testing or exploring the API slightly cumbersome. For that reason
+we have created some helpers for authenticating against the API purely for exploring the schema
+or automatically generating type safe GraphQL code for your language of choice.
+
+The GraphQL endpoint has full support for schema introspection so you can choose to generate
+your own types with your own API keys should you wish to do so.
+
+### Obtain a key for exploring the schema
+
+You can obtain a key with 30minutes of validity from `https://docs.connctd.io/api/querykey`
+
+> **Request**<br/>
+> GET https://docs.connctd.io/api/querykey
+
+
+Or for convinience you can grab a valid generated key right here:
+
+<div class="generatedKeys">
+	<KeyUtilities />
+</div>
+
+
+
+### Schema Download
+
+Download an up to date schema.gql for use with postman or your tooling of choice to help with
+autocompletion.
+
 
 ## Querying
 
 All queries have to be sent against the following endpoint:
 
-> **Request**<br>
-> POST https://api.connctd.io/api/v1/query<br>
-> *Headers:*<br>
-> &nbsp;Content-Type:application/json<br>
-> &nbsp;Authorization:YOUR TOKEN<br>
-> &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
-> *Body:* {"query":"a valid gql query see examples below"}<br>
+> **Request**<br/>
+> POST https://api.connctd.io/api/v1/query<br/>
+> *Headers:*<br/>
+> &nbsp;Content-Type:application/json<br/>
+> &nbsp;Authorization:YOUR TOKEN<br/>
+> &nbsp;X-External-Subject-Id:SUBJECT_ID<br/>
+> *Body:* {"query":"a valid gql query see examples below"}<br/>
 
 <aside class="notice">
   Please note: the following queries are structured to improve readability. You can use these queries as show in case you are using a proper gql editor (e.g. integrated in postman). If you send it as a rough json object it needs to be condensed into one single line and put into the "envelope" object like shown above.
@@ -118,13 +150,13 @@ query {
 
 All queries have to be sent against the following endpoint:
 
-> **Request**<br>
-> POST https://api.connctd.io/api/v1/query<br>
-> *Headers:*<br>
-> &nbsp;Content-Type:application/json<br>
-> &nbsp;Authorization:YOUR TOKEN<br>
-> &nbsp;X-External-Subject-Id:SUBJECT_ID<br>
-> *Body:* see examples below<br>
+> **Request**<br/>
+> POST https://api.connctd.io/api/v1/query<br/>
+> *Headers:*<br/>
+> &nbsp;Content-Type:application/json<br/>
+> &nbsp;Authorization:YOUR TOKEN<br/>
+> &nbsp;X-External-Subject-Id:SUBJECT_ID<br/>
+> *Body:* see examples below<br/>
 
 ### Example 1: Create thing and return its id
 ```graphql
