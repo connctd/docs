@@ -11,7 +11,7 @@ export function KeyUtilities() {
     const fetchKey = useCallback(() => {
         setPending(true)
         setkey("...")
-        fetch("https://docs-pandelis.connctd.vercel.app/api/querykey")
+        fetch("https://docs.connctd.io/api/querykey")
             .then(response => response.json())
             .then((json) => {
                 setPending(false)
