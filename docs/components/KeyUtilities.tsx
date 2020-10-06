@@ -39,20 +39,20 @@ export function KeyUtilities() {
 
             <h3>Using the apollo CLI?</h3>
 
-            <code>
+            <pre className="language-bash">
 $ apollo schema:download --endpoint=https://api.connctd.io/api/v1/query --header=&quot;Authorization: Bearer
                 {" "}
                 {key}
                 &quot; connctdSchema.json
-            </code>
+            </pre>
 
             <h4>Generate Types</h4>
-            <code>
+            <pre className="language-bash">
 $ apollo client:codegen --target=typescript --endpoint=https://api.connctd.io/api/v1/query --header=&quot;Authorization: Bearer
                 {" "}
                 {key}
                 &quot; types
-            </code>
+            </pre>
         </div>
     )
 }

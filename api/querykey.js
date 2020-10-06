@@ -21,6 +21,7 @@ module.exports.default = (req, res) => {
             "Access-Control-Allow-Headers",
             "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
         )
+        res.setHeader("s-maxage", 5)
         res.json({
             status: "ok",
             key: accessRes.data.access_token,
