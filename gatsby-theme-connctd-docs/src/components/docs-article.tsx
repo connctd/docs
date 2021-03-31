@@ -86,6 +86,15 @@ const Content = styled.article<{ theme?: QuartzTheme, layout: string, }>`
         border-radius: 4px 4px 0 0;
     }
 
+    .prism-code {
+        font-size: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        -webkit-overflow-scrolling: touch;
+        background-color: transparent;
+        overflow: initial;
+      }
+
     blockquote {
         background-color: #F9F9F9;
         margin: 0;

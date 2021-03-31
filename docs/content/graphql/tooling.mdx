@@ -1,0 +1,50 @@
+---
+title: Tooling
+order: 2
+---
+
+import KeyUtilities from "../../components/KeyUtilities"
+import { Button } from "@connctd/quartz"
+import {BsDownload} from "react-icons/bs"
+import {css} from "@emotion/core"
+
+##  SDL
+
+Download an up to date Schema Definition (SDL) for use with postman or your tooling of choice to help you with
+autocompletion.
+
+<Button
+	text={<span style={{color: "white"}}>SDL Download <BsDownload size="1.2em" /></span>}
+	style={{textDecoration: "none"}}
+	appearance="secondary"
+	href="/api/schema" />
+
+<br/><br/>
+
+## Schema Introspection
+
+The connctd GraphQL endpoint exists behind an authentication layer which can make
+obtaining the schema for testing or exploring the API slightly cumbersome. For that reason
+we have created some helpers for authenticating against the API purely for exploring the schema
+or automatically generating type safe GraphQL code for your language of choice.
+
+The GraphQL endpoint has full support for schema introspection so you can choose to generate
+your own types with your own API keys should you wish to do so.
+
+### Obtain a key for exploring the schema
+
+You can obtain a key with 30minutes of validity from `https://docs.connctd.io/api/querykey`
+
+> **Request**<br/>
+> GET https://docs.connctd.io/api/querykey
+
+
+Or for convinience you can grab a valid generated key right here:
+
+<div class="generatedKeys">
+	<KeyUtilities />
+</div>
+
+
+
+<br/><br/>

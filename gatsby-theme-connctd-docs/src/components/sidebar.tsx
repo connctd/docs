@@ -1,7 +1,22 @@
 import React from "react"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-import { Themeable } from "@connctd/quartz"
+import { Themeable, Pill } from "@connctd/quartz"
+
+
+
+interface Category {
+    displayName: string
+    directory: string
+}
+
+// maybe we can make this at some point configurable
+let categories: Category[] = [
+    {displayName: "General", directory: "general"},
+    {displayName: "GraphQL", directory: "graphql"},
+    {displayName: "Rest", directory: "rest"},
+    {displayName: "Glossary", directory: "glossary"},
+]
 
 const SidebarContainer = styled.div`
     position: fixed;
@@ -13,13 +28,14 @@ const SidebarContainer = styled.div`
     border-right: 1px solid #C4C4C4;
 `
 
-
 interface LinkFields {
     slug: string
 }
 
 interface LinkFrontmatter {
     title: string
+    order: number
+    legacy: boolean
 }
 
 interface LinkHeading {
@@ -35,6 +51,7 @@ interface LinkFragment {
 interface LinkNode {
     id: string
     relativepath: string
+    relativeDirectory: string
     childMarkdownRemark?: LinkFragment
     childMdx?: LinkFragment
 }
@@ -66,38 +83,71 @@ const Container = styled.div<Themeable>`
 
     hr {
         border: 0px;
-        border-top: 1px solid ${props => props.theme.light50};
+
     }
+`
+
+const CategoryHeading = styled.h2<Themeable>`
+    margin-bottom: 8px;
+    border-bottom: 1px solid ${props => props.theme.light50};
+`
+
+const CategoryLinks = styled.div<Themeable>`
+    padding-left: 16px;
+`
+
+const Hint = styled.span<Themeable>`
+    border: 1px dashed ${props => props.theme.light50};
+    background-color: #fffbde;
+    font-size: x-small;
+    color: gray;
+    padding: 2px 4px 2px 4px;
+    border-radius: 4px;
 `
 
 const pageNode = (node: LinkNode) => node.childMdx || node.childMarkdownRemark
 
-export const Sidebar: React.FC<{links: SideBarLink[], }> = ({ links }) => (
-    <SidebarContainer>
-        <Container>
-            {
-                links.map((l: SideBarLink) => {
-                    const node = pageNode(l.node)
-                    return (
-                        <div key={node.fields.slug}>
-                            <h4>
-                                <Link to={node.fields.slug}>
-                                    {node.frontmatter.title || l.node.id}
-                                </Link>
-                            </h4>
-                            {node.headings.length > 0 && (
-                                <>
-                                    <ul>
-                                        {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`} key={h.value}><li>{h.value}</li></Link>)}
-                                    </ul>
-                                    <hr />
-                                </>
-                            )}
-                        </div>
+export const Sidebar: React.FC<{links: SideBarLink[]}> = ({ links }) => {
 
-                    )
-                })
-            }
+    const renderLinks = (links) => {
+        return links.map((l: SideBarLink) => {
+            const node = pageNode(l.node)
+            return (
+                <div key={node.fields.slug}>
+                    <h4>
+                        <Link to={node.fields.slug}>
+                            {node.frontmatter.title || l.node.id} {node.frontmatter.legacy && <Hint>Legacy</Hint>}
+                        </Link>
+                    </h4>
+                    {node.headings.length > 0 && (
+                        <>
+                            <ul>
+                                {node.headings.map(h => <Link to={`${node.fields.slug}#${h.value.toLowerCase().replace(/ /g, "-")}`} key={h.value}><li>{h.value}</li></Link>)}
+                            </ul>
+                            <hr />
+                        </>
+                    )}
+                </div>
+
+            )
+        })
+    }
+
+    
+
+    return (<SidebarContainer>
+        <Container>
+            { categories.map(category => {
+                return (
+                    <div>
+                        <CategoryHeading>{category.displayName}</CategoryHeading>
+                        <CategoryLinks>
+                            { renderLinks(links.filter(link =>  link.node.relativeDirectory == category.directory)) }
+                        </CategoryLinks>
+                    </div>
+                )
+            }) }
+            
         </Container>
-    </SidebarContainer>
-)
+    </SidebarContainer>);
+}

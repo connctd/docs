@@ -1,8 +1,9 @@
 ---
 title: GraphQL API
 order: 9
+legacy: false
 ---
-import KeyUtilities from "../components/KeyUtilities"
+import KeyUtilities from "../../components/KeyUtilities"
 import { Button } from "@connctd/quartz"
 import {BsDownload} from "react-icons/bs"
 import {css} from "@emotion/core"

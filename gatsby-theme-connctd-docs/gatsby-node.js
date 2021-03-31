@@ -28,6 +28,7 @@ const pageFragment = `
   frontmatter {
     title
     order
+    legacy
   }
   headings(depth: h2) {
     value
@@ -48,6 +49,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             id
             relativePath
+            relativeDirectory
             childMarkdownRemark {
               ${pageFragment}
             }
