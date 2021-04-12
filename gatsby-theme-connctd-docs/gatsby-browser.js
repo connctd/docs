@@ -8,7 +8,9 @@ import { MDXProvider } from "@mdx-js/react"
 import Highlight, { defaultProps } from "prism-react-renderer"
 import Layout from "./src/components/docs-page-layout"
 
-export const wrapPageElement = ({ element, props }) => <Layout {...props}>{element}</Layout>
+// TODO: is wrapping necessary? When doing so all pages (even error pages) need to pass certain fields in context
+//export const wrapPageElement = ({ element, props }) => <Layout {...props}>{element}</Layout>
+
 /* eslint-disable */
 const component = {
   pre: props => {

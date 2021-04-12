@@ -12,9 +12,9 @@ interface Category {
 
 // maybe we can make this at some point configurable
 let categories: Category[] = [
-    {displayName: "General", directory: "general"},
+    {displayName: "Getting Started", directory: "general"},
     {displayName: "GraphQL", directory: "graphql"},
-    {displayName: "Rest", directory: "rest"},
+    {displayName: "REST", directory: "rest"},
     {displayName: "Glossary", directory: "glossary"},
 ]
 

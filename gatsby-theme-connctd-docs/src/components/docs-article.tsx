@@ -102,6 +102,16 @@ const Content = styled.article<{ theme?: QuartzTheme, layout: string, }>`
         border-radius: 5px;
         box-shadow: inset 0 0 0 1px rgba(148,151,155,0.2);
     }
+
+    span.tag {
+        border: 1px dashed;
+        background-color: #c3e3ac;
+        font-size: x-small;
+        color: black;
+        padding: 2px 4px 2px 4px;
+        vertical-align: text-top;
+        border-radius: 4px;
+    }
 `
 
 const Title = styled.h1`
@@ -130,7 +140,6 @@ const TitleBlock = styled.header`
         text-decoration: none;
     }
 `
-
 const EditLink = styled.a`
     float: right;
     font-size: 1.25rem;
