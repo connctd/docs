@@ -1,6 +1,6 @@
 ---
 title: Errors
-order: 11
+order: 6
 ---
 
 The connctd API uses the following error codes:

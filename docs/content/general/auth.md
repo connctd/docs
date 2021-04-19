@@ -1,6 +1,6 @@
 ---
 title: Authorization
-order: 3
+order: 2
 ---
 
 Request against our platform are authorized based on tokens passed inside the request header. If an endpoint requires authorization but no token was specified a `401 - Unauthorized` error is returned. If a token with unsufficient privileges is used a `403 - Forbidden` is returned.

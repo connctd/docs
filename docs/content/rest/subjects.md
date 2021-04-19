@@ -1,6 +1,7 @@
 ---
 title: Subjects
-order: 7
+legacy: true
+order: 5
 ---
 
 Whenever a resource is created a separate header called X-External-Subject-ID needs to be passed to indicate to which subject the resource belongs to. We don't care about how this subject id looks like or if it is related to a real existing person or not - it fully depends on your use case. The following page lists requests related to external subjects.

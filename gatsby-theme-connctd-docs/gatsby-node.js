@@ -28,6 +28,7 @@ const pageFragment = `
   frontmatter {
     title
     order
+    legacy
   }
   headings(depth: h2) {
     value
@@ -48,6 +49,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             id
             relativePath
+            relativeDirectory
             childMarkdownRemark {
               ${pageFragment}
             }
@@ -59,14 +61,16 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       }
     }
   `)
+
     if (result.errors) {
         reporter.panicOnBuild("🚨  ERROR: Loading \"createPages\" query")
     }
-    // Create blog post pages.
-    const posts = result.data.allFile.edges
-    // We'll call `createPage` for each result
+    
+    // retrieve all md and mdx files
+    const docFiles = result.data.allFile.edges
+    const allDocs = [...docFiles]
 
-    const allDocs = [...posts]
+    // sort files depending on the order defined inside the mdx files
     allDocs.sort((a, b) => {
         const orderA = Number.isInteger(dlv(getPageFromEdge(a.node), "frontmatter.order"))
             ? dlv(getPageFromEdge(a.node), "frontmatter.order") : 2
@@ -75,7 +79,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         return orderA - orderB
     })
 
-    posts.forEach(({ node }, index) => {
+    // generate pages from files that have been found
+    docFiles.forEach(({ node }, index) => {
         const { fields } = getPageFromEdge(node)
         createPage({
             // This is the slug we created before
@@ -91,5 +96,35 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                 githubUrl: `https://github.com/connctd/docs/edit/master/docs/content/${node.relativePath}`,
             },
         })
+    })
+
+    // get index file
+    var indexNode = "";
+    for (var i = 0; i < docFiles.length; i++) {
+      if (docFiles[i].node.relativePath.includes("index")) {
+        indexNode = docFiles[i].node;
+      }
+    } 
+
+    // create static index page
+    createPage({
+      path: "/",
+      component: require.resolve("./src/components/docs-page-layout.tsx"),
+      context: {
+        id: indexNode.id,
+        allDocs,
+        githubUrl: `https://github.com/connctd/docs/edit/master/docs/content/${indexNode.relativePath}`,
+      }
+    })
+
+    // capture all non existing pages and redirect to index
+    createPage({
+      path: "/404",
+      component: require.resolve("./src/components/docs-page-layout.tsx"),
+      context: {
+        id: indexNode.id,
+        allDocs,
+        githubUrl: `https://github.com/connctd/docs/edit/master/docs/content/${indexNode.relativePath}`,
+      }
     })
 }
