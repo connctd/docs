@@ -233,10 +233,7 @@ all things with a specific name.
 ```graphql
 mutation {
     deleteThings(thingConstraint: { name: "Virtual Light"}, dryRun: true) {
-        message
-        things {
-            name
-        }
+        name
     }
 }
 ```
@@ -245,20 +242,17 @@ mutation {
 ```json
 {
     "data": {
-        "deleteThings": {
-            "message": "List of things that will be deleted when dryRun is false",
-            "things": [
-                {
-                    "name": "Virtual Light"
-                }
-            ]
-        }
+        "deleteThings": [
+            {
+                "name": "Virtual Light"
+            }
+        ]
     }
 }
 ```
 
 ## Trigger Actions
-<span class="tag">canary feature</span>
+<!-- span class="tag">canary feature</span -->
 
 Trigger actions of things with certain criteria. Example 6 turns on all things that have a SWITCHABLE component.
 The component- and actionSelector define which actions will be called of the things that match the constraints. 
@@ -301,9 +295,27 @@ mutation {
 ```json
 {
     "data": {
-        "requestThingAction": {
-            ...
-        }
+        "requestThingAction": [
+            {
+                "targetThing": {
+                    "id": "85c967f4-2edb-4e0c-887e-2fd7ad5e89dc",
+                    "name": "LightTwo",
+                    "manufacturer": "LIFX"
+                },
+                "targetComponent": {
+                    "id": "lamp",
+                    "name": "Lamp"
+                },
+                "targetAction": {
+                    "id": "setOn"
+                },
+                "id": "542cdaab-71fe-40f4-89e2-aeacb3d2bb47",
+                "status": "COMPLETED",
+                "deadline": "2021-04-20T07:42:06Z",
+                "error": null
+            },
+            [...]
+        ]
     }
 }
 ```

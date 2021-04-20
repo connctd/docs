@@ -201,9 +201,7 @@ all units with a specific type.
 ```graphql
 mutation {
     deleteUnits(unitConstraint: {type: "ROOM"}, dryRun: false) {
-        units {
-            id
-        }
+        id
     }
 }
 ```
@@ -212,16 +210,14 @@ mutation {
 ```json
 {
     "data": {
-        "deleteUnits": {
-            "units": [
-                {
-                    "id": "52cbb28f-8271-49ee-8732-8b33feeefa06"
-                },
-                {
-                    "id": "7587affd-c288-4d44-ad71-318aecf18e84"
-                }
-            ]
-        }
+        "deleteUnits": [
+            {
+                "id": "52cbb28f-8271-49ee-8732-8b33feeefa06"
+            },
+            {
+                "id": "7587affd-c288-4d44-ad71-318aecf18e84"
+            }
+        ]
     }
 }
 ```
