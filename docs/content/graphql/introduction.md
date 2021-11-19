@@ -7,7 +7,7 @@ connctd offers a GraphQL API which makes it rather simple to perform tasks like 
 When working with our api we highly recommend using a GraphQL Editor (e.g. integrated in Postman) or alternatively you can use
 our [GraphiQL explorer](/graphql/explorer).
 
-## Quick Start 
+## Quick Start
 
 There are numerous tutorials that describe in detail what GraphQL is good for and how it works (see [here](https://graphql.org/learn/)). For this
 reason, we will only go into the most important key facts related to our api:
@@ -29,7 +29,7 @@ curl --location --request POST 'https://api.connctd.io/api/v1/query' \
 ```
 *Example 1: Query names of all things*
 
-Since this representation is poorly readble we use the more abstracted representation in all our examples like shown below.
+Since this representation is poorly readable we use the more abstracted representation in all our examples like shown below.
 
 ```graphql
 query {

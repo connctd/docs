@@ -17,7 +17,6 @@ Available scopes for Units:
 > **NOTE 2**
 > This page only shows the most important queries and mutations. Checkout out our [SDL](/graphql/tools/#sdl]) to get a list of all supported queries
 
-
 ## Resolve
 
 By using gql you can not just query units but also things that are located inside units which is very powerful. Example 1 shows a query that fetches
@@ -103,7 +102,9 @@ query {
 
 ### Constraints
 
-Constraints allow you to search for units with certain criteria. There exist different criteries that can be applied like *unitConstraint, unitPropertyConstraint, unitSubjectConstraint, unitChildConstraint, unitParentConstraint and unitThingConstraints*. The following query returns all units that have at least on thing that is SWITCHABLE.
+Constraints allow you to search for units with certain criteria.
+There exist different criteria that can be applied like *unitConstraint, unitPropertyConstraint, unitSubjectConstraint, unitChildConstraint, unitParentConstraint and unitThingConstraints*.
+The following query returns all units that have at least on thing that is SWITCHABLE.
 
 ### Example 2
 
@@ -131,8 +132,9 @@ query {
 
 ## Create
 
-A unit can be created by calling the appropriate createUnit mutation. Example 4 shows the minimal configuration of a 
-unit. Consider using [variables](/graphql/advanced/#variables) when passing complex objects.
+A unit can be created by calling the appropriate createUnit mutation.
+Example 4 shows the minimal configuration of a unit.
+Consider using [variables](/graphql/advanced/#variables) when passing complex objects.
 
 ### Example 3
 

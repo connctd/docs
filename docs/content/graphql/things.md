@@ -16,7 +16,7 @@ Available scopes for Things:
 > Have a look on our [GQL key facts section](/graphql/introduction/#quick-start) to get an overview about required headers, methods and endpoints.
 ---
 > **NOTE 2**
-> This page only shows the most important queries and mutations. Checkout out our [SDL](/graphql/tools/#sdl]) to get a list of all supported queries
+> This page only shows the most important queries and mutations. Checkout out our [SDL](/graphql/tools/#sdl) to get a list of all supported queries
 
 ## Resolve
 

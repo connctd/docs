@@ -330,7 +330,7 @@ Required scope: `connctd.connector`
 > *Body:* Empty body
 
 If the supplied bearer token has the scope `connctd.connector` and the Thing with the specified
-id was created by the application belongig to the bearer token, this request will delete the
+id was created by the application belonging to the bearer token, this request will delete the
 specified Thing.
 
 Required scope: `connctd.connector`
