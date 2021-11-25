@@ -1,6 +1,6 @@
 ---
 title: Scopes
-order: 2
+order: 3
 ---
 
 Scopes are attached to access tokens and specify the actions that can be performed on resources.
