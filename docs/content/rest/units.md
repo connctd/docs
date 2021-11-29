@@ -30,7 +30,7 @@ A unit is a primitive container that gives developers the possibility to group t
 }
 ```
 
-The unit **type** helps to interprete the meaning of a unit. It is meant to be kept very generic like "ROOM" OR "BUILDING" instead of using too meaningful types like "BATHROOM". If your app requires more information about a unit it is a good way to describe them within the **properties**. Those properties can hold arbitrary information since json objects can be passed. Even json ld is allowed to semantically enrich them. A json ld processor takes care of object validation.
+The unit **type** helps to interpret the meaning of a unit. It is meant to be kept very generic like "ROOM" OR "BUILDING" instead of using too meaningful types like "BATHROOM". If your app requires more information about a unit it is a good way to describe them within the **properties**. Those properties can hold arbitrary information since json objects can be passed. Even json ld is allowed to semantically enrich them. A json ld processor takes care of object validation.
 
 The values of the properties **parents**, **children**, **subjects** and **things** are lists holding references to other resources.
 

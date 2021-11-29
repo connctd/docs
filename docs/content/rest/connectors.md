@@ -152,7 +152,7 @@ Required scope: `connctd.connector`
 > *Code:* 204<br>
 > *Body:* empty
 
-Removes a connector instance. A connector instance can only be removed if all clients that are attached to it are removed. Otherwise a 409 is returend.
+Removes a connector instance. A connector instance can only be removed if all clients that are attached to it are removed. Otherwise a 409 is returned.
 
 Required scope: `connctd.connector`
 
@@ -296,5 +296,3 @@ Required scope: `connctd.connector`
 ```
 
 Connector clients might create things with actions. If you are trying to trigger such an action it will fail unless you have provided a callback url to our backend. The callback url tells our backend to which endpoint it has to route the action request since only the thing creating service or app knows how to handle the action request. Since the connector service has created the thing you have to register the callback url you get from the request shown on the right hand side. [Here](#register-a-callback-url) you can read how to register the callback url.
-
-
