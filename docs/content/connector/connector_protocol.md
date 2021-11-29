@@ -224,7 +224,7 @@ To update the instantiation state the connector must send a request to the appro
 
 ```json
 {
-   "details": -arbitrary json object-,
+   "details": -arbitrary JSON object-,
    "furtherStep": {
       "type": -see instantiation step types-,
       "content": "Any content"
@@ -400,7 +400,6 @@ If no error occurs, the connctd platform will respond with status code **204** (
 
 In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
 
-<!-- TODO: explain requestId -->
 ```JSON
 StatusCode: -depends on status in error-
 {
