@@ -1,6 +1,11 @@
 module.exports = {
     plugins: [
-        "gatsby-plugin-catch-links",
+        {
+            resolve: "gatsby-plugin-catch-links",
+            options: {
+                excludePattern: /api/,
+            },
+        },
         "gatsby-plugin-typescript",
         { resolve: "gatsby-theme-connctd-docs", options: {} },
     ],
