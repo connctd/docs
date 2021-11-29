@@ -304,6 +304,72 @@ If another status code is returned, an error message is returned to the app that
 
 ### Action callback
 
+Whenever an action is triggered on a thing, the connector is informed in order to implement the action.
+The following request is sent against the ***actionCallbackUrl*** if an action is triggered.
+For more information on how an action is triggered, see the [GraphQL API documentation](/graphql/things/#trigger-actions).
+
+```http
+POST -actionCallbackURL- HTTP/1.0
+Content-Type: application/json
+Signature: -base64encodedSignature- 
+
+{
+    "id": "-actionRequestId-",
+    "thingId": "-thingId",
+    "componentId": "-componentId-",
+    "actionId": "-actionId-",
+    "status": "-status-",
+    "parameters": {
+        "-key-": "-value-"
+    }
+}
+```
+
+#### Payload
+
+`id` is the ID of the action request. It identifies this specific request, not the triggered action.
+
+`thingId` is the ID of the thing the action is triggered on.
+
+`componentId` is the ID of the component that contains the action. Remember, that an action is always part of an component.
+
+`status` is the current status of the action request. It s initially set to **PENDING** by the connctd platform. See [below](#action-states) for all possible values.
+
+`parameters` is a map of key-value pairs, containing the parameters for the action. Parameters are defined during thing creation.
+
+#### Response
+
+The connector should perform the action and respond with one of the following status codes: **200**, **204**, **400** of **403**.
+
+If the connector responds with status code **200**, the response can optionally contain a payload specifying the status of the action and an optional error message.
+This allows a connector to signal a pending action to the connctd platform.
+It is the responsibility  of the connector to later on update the state of the action using the API described [below](#update-action-request-status).
+
+If the connector replies with **204** (**No Content**) the response body is ignored and the action is interpreted as COMPLETED.
+
+If the connector replies with **400** (**Bad Request**) the response body is ignored and the action is interpreted as FAILED with an appropriate error message (bad parameters).
+
+If the connector replies with **403** (**Forbidden**) the response body is ignored and the action is interpreted as FAILED with an appropriate error message (action not allowed).
+
+#### Action states
+
+* PENDING
+
+   Connector is still processing the action and later on sends an action request update about completion or failure.
+
+* COMPLETED
+
+   Action was performed successfully.
+
+* FAILED
+
+   Action was not performed due to an error. The connector is expected to send an error description in the response.
+   Probable causes are insufficient privileges, bad parameters or that the underlying device is not reacting.
+
+* CANCELED
+
+   Action was cancelled.
+
 ## Connctd API
 
 The connctd platform provides an API that can be used to manage the whole lifecycle of a connector by creating, updating and deleting installation, instances and things.
@@ -311,7 +377,73 @@ In the following we give a detailed description of the API used for connectors.
 
 ### Update Installation State
 
+Connectors can update the state of installations using the installation token.
+Installation state can only be updated to **COMPLETE**, **ONGOING** or **FAILED**.
+
+```http
+POST https://connectors.connctd.io/api/v1/connectorhub/callback/instances/things
+Authorization: Bearer -installation token-
+Content-Type: application/json
+
+{
+	"state": -installation state: COMPLETE or ONGOING or FAILED-,
+	"details": -arbitrary json object-
+}
+```
+
+Connectors can attach an arbitrary JSON object to communicate details about the installation state.
+<!-- TODO: How exactly is state details uses in the connectorhub? -->
+
+#### Response
+
+If no error occurs, the connctd platform will respond with status code **204** (**NO_CONTENT**).
+
+In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
+
+<!-- TODO: explain requestId -->
+```JSON
+StatusCode: -depends on status in error-
+{
+    "error": "BAD_REQUEST",
+    "status": 400,
+    "description": "Given installation state details are not valid",
+}
+```
+
 ### Update Instantiation State
+
+Connectors can update the state of installations using the installation token.
+Installation state can only be updated to **COMPLETE**, **ONGOING** or **FAILED**.
+
+```http
+POST https://connectors.connctd.io/api/v1/connectorhub/callback/instances/things
+Authorization: Bearer -instance token-
+Content-Type: application/json
+
+{
+	"state": -instance state: COMPLETE or ONGOING or FAILED-,
+	"details": -arbitrary json object-
+}
+```
+
+Connectors can attach an arbitrary JSON object to communicate details about the instance state.
+<!-- TODO: How exactly is state details uses in the connectorhub? -->
+
+#### Response
+
+If no error occurs, the connctd platform will respond with status code **204** (**NO_CONTENT**).
+
+In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
+
+<!-- TODO: explain requestId -->
+```JSON
+StatusCode: -depends on status in error-
+{
+    "error": "BAD_REQUEST",
+    "status": 400,
+    "description": "Given installation state details are not valid",
+}
+```
 
 ### Create Thing
 
@@ -376,7 +508,7 @@ StatusCode: 201 Created
 }
 ```
 
-In case of an error an the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
+In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
 
 <!-- TODO: explain requestId -->
 ```JSON
@@ -421,6 +553,98 @@ StatusCode: -depends on status in error-
 
 ### Update Thing Status
 
+Using an instance token, a connector can update the status of a thing.
+See [thing status](#create-thing) for all available states.
+
+```http
+PUT https://connectors.connctd.io/api/v1/connectorhub/callback/instances/things/-thingID-/status
+Authorization: Bearer -your instance token-
+Content-Type: application/json
+
+{  
+	"status":"-new thing status-"
+}
+```
+#### Response
+
+If no error occurs, the connctd platform will respond with status code **204** (**NO_CONTENT**).
+
+In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
+
+<!-- TODO: explain requestId -->
+```JSON
+StatusCode: -depends on status in error-
+{
+    "error": "BAD_REQUEST",
+    "status": 400,
+    "description": "The client body couldn't be decoded",
+    "requestId": "-request id-"
+}
+```
+
 ### Remove Thing
 
+Using an instance token, a connector can remove things.
+
+```http
+DELETE https://connectors.connctd.io/api/v1/connectorhub/callback/instances/things/-thingID-
+Authorization: Bearer -your instance token-
+```
+
+#### Response
+
+If no error occurs, the connctd platform will respond with status code **204** (**NO_CONTENT**).
+
+In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
+
+<!-- TODO: explain requestId -->
+```JSON
+StatusCode: -depends on status in error-
+{
+    "error": "BAD_REQUEST",
+    "status": 400,
+    "description": "The client body couldn't be decoded",
+    "requestId": "-request id-"
+}
+```
+
 ### Update Action Request Status
+
+Some actions may need some time for completion.
+In such a case a connector can reply to an incoming action request with status code **200** and the status **PENDING** (see [action callback](#action-callback)).
+To finalize a **PENDING** action request, the connector must update the action request state as soon as the action is completed.
+Connectors can use the following API endpoint to update the action request.
+Note that only **PENDING** requests can be updated.
+
+```http
+PUT https://connectors.connctd.io/api/v1/connectorhub/callback/instances/actions/requests/-actionRequestID-
+Authorization: Bearer -instanceToken-
+Content-Type: application/json
+
+{  
+	"status":"COMPLETED or FAILED",
+	"error":"-optional error message if status is FAILED"
+}
+```
+
+The status can only be updated to **COMPLETED** or **FAILED** and only if the current status is **PENDING**.
+Note that the status of an action request can change from **PENDING** to **COMPLETED** or **FAILED** without the knowledge of the connector, due to an cancellation request or timeout.
+In that case, an error is returned to the connector.
+If the status is updated to **COMPLETED**, no error message must be send.
+
+#### Response
+
+If no error occurs, the connctd platform will respond with status code **204** (**NO_CONTENT**).
+
+In case of an error the connctd platform will respond with status code **40x** or **50x** and a JSON object with details on the error is returned.
+
+<!-- TODO: explain requestId -->
+```JSON
+StatusCode: -depends on status in error-
+{
+    "error": "BAD_REQUEST",
+    "status": 400,
+    "description": "The client body couldn't be decoded",
+    "requestId": "-request id-"
+}
+```
