@@ -40,4 +40,4 @@ query {
 ```
 *Example 2: Query names of all things*
 
-Checkout the [tooling](/graphql/tooling) section if you would like to see which tools and liberaries may assist you when working with our api.
+Checkout the [tooling](/graphql/tools) section if you would like to see which tools and libraries may assist you when working with our API.
