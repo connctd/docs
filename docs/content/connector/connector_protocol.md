@@ -530,8 +530,6 @@ Authorization: Bearer -your instance token-
 Content-Type: application/json
 
 {  
-   <!-- TODO What is the messageId -->
-  "messageId":"123",
   "value":"-new value-",
   "lastUpdate": -RFC3339 formatted timestamp-
 }
