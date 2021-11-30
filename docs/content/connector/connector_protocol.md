@@ -345,6 +345,14 @@ If the connector responds with status code **200**, the response can optionally 
 This allows a connector to signal a pending action to the connctd platform.
 It is the responsibility  of the connector to later on update the state of the action using the API described [below](#update-action-request-status).
 
+```json
+{
+    "id": "-action request ID-",
+    "status": "-PENDING or FAILED-",
+    "error": "-optional error message-"
+}
+```
+
 If the connector replies with **204** (**No Content**) the response body is ignored and the action is interpreted as COMPLETED.
 
 If the connector replies with **400** (**Bad Request**) the response body is ignored and the action is interpreted as FAILED with an appropriate error message (bad parameters).
