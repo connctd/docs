@@ -251,7 +251,7 @@ For more information on the signature read the documentation for [new installati
 #### Response
 
 The connector should take appropriate actions on his side, e.g. remove the instance, and respond with status code **204** (**NO_CONTENT**).
-If another status code is returned, an error message is returned to the app that is removing the instance, but the removal will still succeed.
+If another status code is returned, an error message is returned to the app that is removing the instance, but the removal will still succeed. **Please note**: connctd already takes care of removing the things that are related to the removed instance.
 
 ### Instantiation States
 
