@@ -5,7 +5,7 @@ order: 1
 
 ### Connector Publication
 
-Describes a technology and configuration parameters that are required to install and instantiate connectors. Publications can only be created with developer access tokens. Connector publication can be created via our API or in the [Developer Center](https://devcenter.connctd.io/). Multiple apps can install a published connector.
+Describes a technology and configuration parameters that are required to install and instantiate connectors. Publications can be managed via the [Developer Center](https://devcenter.connctd.io/). Multiple apps can install a published connector.
 
 ### Connector Installation
 
