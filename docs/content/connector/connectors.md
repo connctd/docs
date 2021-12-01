@@ -51,7 +51,7 @@ mutation InstantiateConnector($installationId: ID!) {
 }
 ```
 
-You can find the connector installation ID in the Developer Center in the detail view of your [installed connectors](https://devcenter.connctd.io/connectors).
+You can find the connector installation ID in the Developer Center in the details view of your [installed connectors](https://devcenter.connctd.io/connectors).
 The specific configuration depends on the connector, but it generally requires a list of GraphQL input objects of the following type:
 
 ```graphql
