@@ -81,7 +81,7 @@ Optionally the response can contain a payload specifying further steps required 
 The content of field **furtherStep** will be shown in the [Developer Center](https://devcenter.connctd.io/), formatted according to its type.
 The field **details** can contain an arbitrary JSON object.
 If the connector responds with status code **202** and further steps, the installation state will be set to **ONGOING**.
-In that case, it is the responsibility of the connector to update the installation state when the installation is finished.
+In that case, it is the responsibility of the connector to update the installation state as soon as the installation is finished.
 To update the installation state the connector must send a request to the appropriate [API endpoint](#update-installation-state) described below.
 <!-- TODO What is "details" used for? -->
 <!-- TODO Add an example on how the payload / further step is used -->
