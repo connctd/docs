@@ -328,7 +328,7 @@ Signature: -base64encodedSignature-
 
 #### Payload
 
-`id` is the ID of the action request. It identifies this specific request, not the triggered action.
+`id` is the ID of the action request. It identifies this specific request, not the triggered action. It can be for example used to update the state of an action later on. This is useful when interacting with devices that might be in a sleeping mode.
 
 `thingId` is the ID of the thing the action is triggered on.
 
