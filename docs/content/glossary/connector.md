@@ -9,7 +9,7 @@ Describes a technology and configuration parameters that are required to install
 
 ### Connector Installation
 
-Can be used to configure a technology. A connector installation needs to be installed by using a service access token which means it is bound to a service / app. A connector installation always belongs to a connector publication. It acts as a container for multiple connector instances. One app can't have multiple installations for one specific publication. Connectors can be installed via our API or in the [Developer Center](https://devcenter.connctd.io/).
+Are used to configure a technology. A connector installation is always based on a referenced connector publication and can only be installed once for a specific app. It acts as a container for multiple connector instances. Connector installations are managed via the [Developer Center](https://devcenter.connctd.io/).
 
 <!-- TODO: Proof read the rest of the glossary below -->
 ### Connector Instance
