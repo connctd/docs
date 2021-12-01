@@ -168,7 +168,7 @@ If another status code is returned, an error message is returned to the app that
 
 ### Instance callback
 
-While an App can only install a connector once, it can create multiple instantiations of the installed connector.
+While a developer can install a connector only once per app, instantiations can be created multiple times for a specific installation.
 As soon as a connector is installed, instances of it can be spawned for different end users (separated by external subject ids).
 Whenever a connector installation is instantiated on the connctd platform a POST request is send against the *instanceCallbackURL* specified in the connector publication.
 When a instantiation is removed a DELETE request is send against *instanceCallbackURL/-installationId-*.
