@@ -456,7 +456,7 @@ StatusCode: -depends on status in error-
 ### Create Thing
 
 Connectors can register new things on the connctd platform.
-Things are always bound to a connector instance and registration needs the **instance token** retrieved during creation of the instance (see [instance creation](#new-instantiation)).
+Things are always bound to a connector instance and registration needs the **instance token** received during creation of the instance (see [instance creation](#new-instantiation)).
 
 ```http
 POST https://connectors.connctd.io/api/v1/connectorhub/callback/instances/things
