@@ -208,7 +208,7 @@ It is used to authenticate requests towards the connctd platform and should be s
 It is set to **1** (**INITIALIZED**) and can have one of the values described [below](#instance-states).
 
 `configuration` will contain all configuration parameters provided by the instantiation.
-It will contain at least the required parameters and all parameters are type checked and validated according to the requirements specified in the connector publication before sending the request.
+It will contain at least the required parameters specified in the originating connector publication. Additionally all parameters are type checked and validated beforehand.
 If an instantiation does not require any parameters, the array will be empty.
 Parameters can be specified during connector publication.
 
