@@ -3,19 +3,18 @@ import styled from "@emotion/styled"
 import { Link } from "gatsby"
 import { Themeable, Pill } from "@connctd/quartz"
 
-
-
 interface Category {
     displayName: string
     directory: string
 }
 
 // maybe we can make this at some point configurable
-let categories: Category[] = [
-    {displayName: "Getting Started", directory: "general"},
-    {displayName: "GraphQL", directory: "graphql"},
-    {displayName: "REST", directory: "rest"},
-    {displayName: "Glossary", directory: "glossary"},
+const categories: Category[] = [
+    { displayName: "Getting Started", directory: "general" },
+    { displayName: "GraphQL", directory: "graphql" },
+    { displayName: "Connectors", directory: "connector" },
+    { displayName: "REST", directory: "rest" },
+    { displayName: "Glossary", directory: "glossary" },
 ]
 
 const SidebarContainer = styled.div`
@@ -108,7 +107,6 @@ const Hint = styled.span<Themeable>`
 const pageNode = (node: LinkNode) => node.childMdx || node.childMarkdownRemark
 
 export const Sidebar: React.FC<{links: SideBarLink[]}> = ({ links }) => {
-
     const renderLinks = (links) => {
         return links.map((l: SideBarLink) => {
             const node = pageNode(l.node)
@@ -133,21 +131,19 @@ export const Sidebar: React.FC<{links: SideBarLink[]}> = ({ links }) => {
         })
     }
 
-    
 
-    return (<SidebarContainer>
-        <Container>
-            { categories.map(category => {
-                return (
+    return (
+        <SidebarContainer>
+            <Container>
+                { categories.map(category => (
                     <div>
                         <CategoryHeading>{category.displayName}</CategoryHeading>
                         <CategoryLinks>
-                            { renderLinks(links.filter(link =>  link.node.relativeDirectory == category.directory)) }
+                            { renderLinks(links.filter(link => link.node.relativeDirectory === category.directory)) }
                         </CategoryLinks>
                     </div>
-                )
-            }) }
-            
-        </Container>
-    </SidebarContainer>);
+                )) }
+            </Container>
+        </SidebarContainer>
+    )
 }
