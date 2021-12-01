@@ -101,7 +101,7 @@ If the connector responds with status code **201** the payload is ignored, becau
 If further steps are required, the connector should instead respond with status code **202**.
 
 ### Installation removal
-
+When an installation is removed a DELETE request is send against *installationCallbackURL/-installationId-*.
 ```http
 DELTETE /-installationCallbackURL-/-installationID- HTTP/1.1
 Signature: -base64encodedSignature-
