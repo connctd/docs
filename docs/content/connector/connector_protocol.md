@@ -306,7 +306,7 @@ If another status code is returned, an error message is returned to the app that
 ### Action callback
 
 Whenever an action is triggered on a thing, the connector is informed in order to implement the action.
-The following request is sent against the ***actionCallbackUrl*** if an action is triggered.
+The following request is sent against the ***actionCallbackUrl*** if an action is triggered. Every action request has a unique action id. This allows a connector to implement even long-taking actions since the connector can always reference a specific action request and finalize it whenever the actual action was executed.
 For more information on how an action is triggered, see the [GraphQL API documentation](/graphql/things/#trigger-actions).
 
 ```http
