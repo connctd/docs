@@ -65,7 +65,7 @@ input ConfigurationParameterValueInput {
 
 Connector installations can be removed in the details view of your [installed connectors](https://devcenter.connctd.io/connectors) by clicking the Delete button.
 Note that this will also delete the created instantiations which means that you will loose access to the created things.
-This will also affect the end users of your app.
+**This will also affect the end users of your app.**
 
 ## Writing your own connector
 
