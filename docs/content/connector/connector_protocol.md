@@ -70,7 +70,7 @@ The connector should store it to be able to communicate with the connctd platfor
 It is initially set to **1** (**INITIALIZED**) and can have one of the values described [below](#installation-states).
 
 `configuration` will contain all configuration parameters provided by the installation.
-It will contain at least the required parameters and all parameters are type checked and validated according to the requirements specified in the connector publication before sending the request.
+It will contain at least the required parameters. Additionally all parameters are type checked and validated beforehand  according to the requirements specified in the connector publication.
 If an installation does not require any parameters, the array will be empty.
 Parameters can be specified during connector publication.
 
