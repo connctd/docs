@@ -205,7 +205,7 @@ It is used for further communication with the platform and should be stored by t
 It is used to authenticate requests towards the connctd platform and should be saved by the connector.
 
 `state` is the current state of the instance.
-It is set to **1** (**INITIALIZED**) and can have one of the values described [below](#instance-states).
+It is set to **1** (**INITIALIZED**) and can have one of the values described [below](#instantiation-states).
 
 `configuration` will contain all configuration parameters provided by the instantiation.
 It will contain at least the required parameters specified in the originating connector publication. Additionally all parameters are type checked and validated beforehand.

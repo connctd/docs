@@ -12,8 +12,8 @@ interface Category {
 const categories: Category[] = [
     { displayName: "Getting Started", directory: "general" },
     { displayName: "GraphQL", directory: "graphql" },
-    { displayName: "REST", directory: "rest" },
     { displayName: "Connectors", directory: "connector" },
+    { displayName: "REST", directory: "rest" },
     { displayName: "Glossary", directory: "glossary" },
 ]
 
