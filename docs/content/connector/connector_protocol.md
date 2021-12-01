@@ -218,7 +218,7 @@ The connector has to respond with one of the following status codes: **201**, **
 Optionally the response can contain a payload specifying further steps required for the instantiation.
 The field **details** can contain an arbitrary JSON object.
 If the connector responds with status code **202** and further steps, the instantiation state will be set to **ONGOING**.
-In that case, it is the responsibility of the connector to update the instantiation state when the instantiation is finished.
+In that case, it is the responsibility of the connector to update the instantiation state as soon as the instantiation is finished.
 To update the instantiation state the connector must send a request to the appropriate [API endpoint](#update-instantiation-state) described below.
 <!-- TODO What is "details" used for? -->
 <!-- TODO Add an example on how the payload / further step is used -->
