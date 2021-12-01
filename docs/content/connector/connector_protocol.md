@@ -6,7 +6,9 @@ order: 3
 The connector protocol consists of a set of callback URLs (called by the platform) and an API provided by the connctd platform, that defines a set of endpoints that can be called by the connector.
 The callbacks are called by the connctd platform whenever a connector is installed or instantiated or when an action is performed on a thing.
 The endpoints can be called by the connector to manage installations, instances and things and to update properties of specific things.
-This concept allows you to write your own connector and host it where ever you want as long as it is reachable via https. And due to the concept of instance and installation tokens other apps can (if desired by you) make use of your written connector without exposing any end customer details.
+This concept allows you to write your own connector and host it wherever you want as long as it is reachable via HTTPS.
+And due to the concept of instance and installation tokens other apps can (if desired by you) make use of your written connector without exposing any end customer details.
+
 ## Callbacks
 
 In the following, we give detailed descriptions of the callbacks used in the connector protocol.

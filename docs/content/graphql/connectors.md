@@ -326,7 +326,7 @@ mutation {
 ### Instantiate Connector
 
 Using a service token, connectors can be instantiated with the following mutation.
-It requires two arguments: the installation ID you which to instantiate and the customer configuration parameters defined by the connector.
+It requires two arguments: the ID of the installation you would like to instantiate and the customer configuration parameters defined by the connector.
 If the connector does not require any configuration parameters, you can send an empty array.
 
 ### Example 5
@@ -335,7 +335,12 @@ If the connector does not require any configuration parameters, you can send an 
 mutation InstantiateConnector {
     instantiateConnector(
         installationId: "-installation ID-", 
-        configuration: []
+        configuration: [
+            {
+                configurationParameterId: "-parameter ID-",
+                value: "-parameter value-"
+            }
+        ]
     ) {
         id
         installation {
@@ -400,7 +405,7 @@ mutation {
 ### Delete Connector Instances
 
 Instances can be removed using a service token with the following mutation.
-It requires one arguments, the ID of the instance you wish to remove.
+It requires the ID of the instance you would like to remove.
 
 ### Example 8
 *Query*
