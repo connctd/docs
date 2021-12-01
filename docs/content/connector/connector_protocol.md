@@ -16,7 +16,7 @@ However, if your connector does not need a callback you could implement a versio
 ### Installation callback
 
 Whenever a connector is installed on the connctd platform a POST request is send against the *installationCallbackURL* specified in the connector publication.
-When a installation is removed a DELETE request is send against *installationCallbackURL/-installationId-*.
+When an installation is removed a DELETE request is send against *installationCallbackURL/-installationId-*.
 
 ### New installation
 
