@@ -5,10 +5,10 @@ order: 6
 
 A connector is a piece of code that runs externally and connects foreign technologies to the connctd platform.
 Connectors are responsible for creating things and executing actions related to the things to update their state.
-Connectors can be used in apps and installed via the [Developer Center](https://devcenter.connctd.io/).
+Connectors can be used in apps and managed via the [Developer Center](https://devcenter.connctd.io/).
 For a deeper understanding of the connector concept and how to implement connectors, take a look at the [connector documentation](/connector/connectors/).
 Here we will focus on how connectors can be managed and used via our GraphQL API.
-Most of this API endpoints are meant to be used via the [Developer Center](https://devcenter.connctd.io) but if you prefer you can use the API directly.
+Most of this API endpoints are meant to be used via the [Developer Center](https://devcenter.connctd.io) but if you prefer you can use the API directly which may become handy during connector development.
 
 ## Resolve
 
