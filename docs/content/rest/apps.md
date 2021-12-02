@@ -27,4 +27,3 @@ used (depending on the used oauth2 flow) to retrieve an access token. This token
 
 This request stores a system wide callback url for all action requests that are related to this app. This is important whenever an app creates things that contain actions. As soon as a user triggers any of these actions by performing an action request the request is forwarded to the given callback url. Please note: if you are using our connector service you have to register your app specific connector callback url with this request. [Here](#get-connector-service-callback-url) you can read how to get one.
 <!-- TODO: Write docs on how to get a connector service callback url -->
-<!-- TODO: what exactly is the connector service in this context? -->
