@@ -76,7 +76,7 @@ Parameters can be specified during connector publication.
 The connector has to respond with one of the following status codes: **201**, **202**, **401** or **403**.
 Optionally the response can contain a payload specifying further steps required for the installation.
 The content of field **furtherStep** will be shown in the [Developer Center](https://devcenter.connctd.io/), formatted according to its type. It can become handy if the installation requires additional steps performed by the user (e.g. giving consent during OAuth2 flow)
-The field **details** can contain an arbitrary JSON object that will be rendered during the the installation process.
+The field **details** can contain an arbitrary JSON object that will be rendered during the installation process.
 If the connector responds with status code **202** and further steps, the installation state will be set to **ONGOING**.
 In that case, it is the responsibility of the connector to update the installation state as soon as the installation is finished.
 To update the installation state the connector must send a request to the appropriate [API endpoint](#update-installation-state) described below.
