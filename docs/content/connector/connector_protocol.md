@@ -80,7 +80,7 @@ The field **details** can contain an arbitrary JSON object that will be rendered
 If the connector responds with status code **202** and further steps, the installation state will be set to **ONGOING**.
 In that case, it is the responsibility of the connector to update the installation state as soon as the installation is finished.
 To update the installation state the connector must send a request to the appropriate [API endpoint](#update-installation-state) described below.
-This can be handy if the connector needs further authorization via e.g. an OAuth flow.
+This is useful in cases where the installation needs to be completed asynchronously because it was waiting for e.g. the users consent during an oauth2 flow.
 
 ```json
 {
