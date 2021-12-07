@@ -11,7 +11,6 @@ Describes a technology and configuration parameters that are required to install
 
 Are used to configure a technology. A connector installation is always based on a referenced connector publication and can only be installed once for a specific app. It acts as a container for multiple connector instances. Connector installations are managed via the [Developer Center](https://devcenter.connctd.io/).
 
-<!-- TODO: Proof read the rest of the glossary below -->
 ### Connector Instance
 
 Abstracts e.g. devices for a specific end customer. An instance always belongs to a connector installation. Needs to be installed with a service token from within your service. E.g. your end customer request the installation of a specific technology and your service sends the appropriate connector installation request to our platform.
