@@ -340,10 +340,10 @@ Signature: -base64encodedSignature-
 
 #### Response
 
-The connector should perform the action and respond with one of the following status codes: **200**, **204**, **400** of **403**.
+The connector should perform the action and respond with one of the following status codes: **202**, **204**, **400** of **403**.
 
-If the connector responds with status code **200**, the response can optionally contain a payload specifying the status of the action and an optional error message.
-This allows a connector to signal a pending action to the connctd platform.
+If the connector responds with status code **202**, the response can optionally contain a payload specifying the status of the action and an optional error message.
+This allows a connector to signal a pending or failed action to the connctd platform.
 It is the responsibility  of the connector to later on update the state of the action using the API described [below](#update-action-request-status).
 
 ```json
